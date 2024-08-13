@@ -1,1 +1,72 @@
-<p>carrito works!</p>
+<app-menu></app-menu>
+<div class="container">
+  <div class="row mt-4">
+    <div class="card card-bordered">
+      <div class="card-body">
+          <div class="col-md-12">
+            <table class="table table-nowrap table-align-middle">
+              <thead class="thead-light">
+                <tr>
+                  <th></th>
+                  <th>Precio</th>
+                  <th>Cantidad</th>
+                  <th>Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a class="d-flex" href="#">
+                      <div class="flex-shrink-0">
+                        <div class="avatar avatar-circle avatar-lg ">
+                          <img class="avatar-img" src="https://htmlstream.com/preview/front-v4.2/html/assets/img/160x160/img10.jpg" alt="Image Description">
+                        </div>
+                      </div>
+                      <div class="flex-grow-1 ms-3">
+                        <span class="d-block h5 text-inherit mb-0">Gran fondo hombre<i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-placement="top" title="Top endorsed"></i></span>
+                        <span class="d-block font-size-sm text-body">Hombre: Categoría B</span>
+                        <span class="d-block font-size-sm text-body">Talla Jersey: M</span>
+                      </div>
+                    </a>
+                  </td>
+                  <td>$ 450.000</td>
+                  <td><input type="number" class="form-control form-control-sm" style="width: 70px !important;"></td>
+                  <td>$ 450.000</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row mt-4">
+              <div class="col-md-3">
+                <input type="text" class="form-control form-control-sm" placeholder="Còdigo del cupòn">
+              </div>
+              <div class="col-md-2">
+                <button class="btn btn-danger btn-sm">Aplicar cupòn</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-md-6 offset-md-6">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-header-title">Total del carrito</h3>
+              <small class="text-muted">2 days ago</small>
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Subtotal</h4><small>	$4.050.000</small>
+              <hr>
+              <h4 class="card-title text-muted">Envio	envio gratuito</h4>
+              <hr>
+              <h4 class="card-title">Total	</h4> <span>$4.050.000</span>
+              <hr>
+              <a href="#" class="btn btn-primary mt-5">Finalizar compra</a>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<app-footer></app-footer>
