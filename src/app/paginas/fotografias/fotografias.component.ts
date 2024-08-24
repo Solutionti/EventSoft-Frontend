@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from '../../componentes/menu/menu.component';
 import { FooterComponent } from "../../componentes/footer/footer.component";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-detallecompra',
+  selector: 'app-fotografias',
   standalone: true,
   imports: [
+    FooterComponent,
     RouterOutlet,
     RouterLink,
-    MenuComponent,
-    FooterComponent,
     CommonModule
   ],
-  templateUrl: './detallecompra.component.html',
-  styleUrl: './detallecompra.component.css'
+  templateUrl: './fotografias.component.html',
+  styleUrl: './fotografias.component.css'
 })
-export class DetallecompraComponent implements OnInit {
+export class FotografiasComponent implements OnInit{
+
   constructor() {
 
   }
@@ -45,4 +44,6 @@ export class DetallecompraComponent implements OnInit {
       clearInterval(intervalId2);
     }, 4000); // Detiene la ejecución después de 3 segundos
   }
+
+  
 }

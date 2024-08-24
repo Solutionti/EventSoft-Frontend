@@ -22,8 +22,25 @@ export const routes: Routes = [
     import('./paginas/detallecompra/detallecompra.component').then((c) => c.DetallecompraComponent) 
   },
   {
+    path: 'fotografias',
+    loadComponent: () => 
+    import('./paginas/fotografias/fotografias.component').then((c) => c.FotografiasComponent) 
+  },
+  {
     path: 'iniciarsesion',
     loadComponent: () => 
     import('./paginas/iniciarsesion/iniciarsesion.component').then((c) => c.IniciarsesionComponent) 
+  },
+
+  // RUTAS DE ADMINISTRACION
+  {
+    path: 'tuqr',
+    loadComponent: () => 
+    import('./zonasport/tuqr/tuqr.component').then((c) => c.TuqrComponent) 
+  },
+  {
+    path: 'zonasport',
+    loadComponent: () => 
+    import('./zonasport/zonadeportista/zonadeportista.component').then((c) => c.ZonadeportistaComponent) 
   },
 ];

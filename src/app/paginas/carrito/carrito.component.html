@@ -61,7 +61,12 @@
               <hr>
               <h4 class="card-title">Total	</h4> <span>$4.050.000</span>
               <hr>
-              <a href="#" class="btn btn-primary mt-5">Finalizar compra</a>
+              <a
+                routerLink="/detallecompra"
+                class="btn btn-primary mt-5"
+              >
+                Finalizar compra
+              </a>
             </div>
           </div>
     </div>
@@ -70,3 +75,12 @@
 <br>
 <br>
 <app-footer></app-footer>
+<!--  -->
+<div [hidden]="spinner" class="overlay z-index">
+  <div class="dot-wave">
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+    <div class="dot-wave__dot"></div>
+  </div>
+</div>

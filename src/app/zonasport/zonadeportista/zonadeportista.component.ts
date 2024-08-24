@@ -1,31 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from '../../componentes/menu/menu.component';
-import { FooterComponent } from "../../componentes/footer/footer.component";
 import { RouterLink, RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { FooterComponent } from "../../componentes/footer/footer.component";
 
 @Component({
-  selector: 'app-detallecompra',
+  selector: 'app-zonadeportista',
   standalone: true,
   imports: [
     RouterOutlet,
     RouterLink,
-    MenuComponent,
-    FooterComponent,
-    CommonModule
-  ],
-  templateUrl: './detallecompra.component.html',
-  styleUrl: './detallecompra.component.css'
+    FooterComponent
+],
+  templateUrl: './zonadeportista.component.html',
+  styleUrl: './zonadeportista.component.css'
 })
-export class DetallecompraComponent implements OnInit {
+export class ZonadeportistaComponent implements OnInit {
+
   constructor() {
 
   }
 
   ngOnInit(): void {
-    this.cargaPagina();
+    this.cargaPagina()
   }
 
+  datospersonales = true;
+  pedidos = false;
   spinner = true;
 
   cargaPagina() {
@@ -44,5 +43,15 @@ export class DetallecompraComponent implements OnInit {
     setTimeout(() => {
       clearInterval(intervalId2);
     }, 4000); // Detiene la ejecución después de 3 segundos
+  }
+
+  verPedidos() {
+    this.datospersonales = true;
+    this.pedidos = false;
+  }
+
+  verDatosPersonales() {
+    this.datospersonales = false;
+    this.pedidos = true;
   }
 }

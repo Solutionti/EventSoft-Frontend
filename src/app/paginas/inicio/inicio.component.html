@@ -56,7 +56,6 @@
   </div>
   <div class="container">
     <div class="d-grid gap-5">
-      <a type="button" class="d-block" routerLink="/inscripcion">
         <div class="row">
           <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
             <img class="card-img" src="https://www.rbcgranfondo.com/wp-content/uploads/2023/01/rbc-gran-fondo-whistler-home-social-fb.jpg" alt="Image Description">
@@ -77,6 +76,13 @@
                     <span class="text-body ms-1">4.95</span>
                   </div>
                 </div>
+                  <a
+                    class="btn btn-danger mt-3"
+                    type="button"
+                    [routerLink]="['/inscripcion']"
+                  >
+                    <i class="fas fa-shopping-cart"></i> Comprar
+                  </a>
               </div>
               <div class="col-lg-6">
                 <div class="row">
@@ -97,8 +103,6 @@
             </div>
           </div>
         </div>
-      </a>
-      <a class="d-block"  type="button" routerLink="/inscripcion">
         <div class="row">
           <div class="col-sm-5 col-lg-3 mb-3 mb-sm-0">
             <img class="card-img" src="https://www.ciclismoafondo.es/uploads/s1/12/83/47/12/the-millars-uci-gran-fondo-lanza-una-versio-n-medio-fondo.jpeg" alt="Image Description">
@@ -119,6 +123,13 @@
                     <span class="text-body ms-1">4.95</span>
                   </div>
                 </div>
+                <a
+                  class="btn btn-danger mt-3"
+                  type="button"
+                  [routerLink]="['/inscripcion']"
+                >
+                  <i class="fas fa-shopping-cart"></i> Comprar
+                </a>
               </div>
               <div class="col-lg-6">
                 <div class="row">
@@ -139,7 +150,6 @@
             </div>
           </div>
         </div>
-      </a>
     </div>
   </div>
   <div class="container content-space-2 content-space-lg-2">
@@ -199,13 +209,7 @@
         <div class="col-8 mb-2">
           <div id="youTubeVideoPlayer" class="video-player video-player-inline-btn rounded-2">
             <img class="img-fluid video-player-preview rounded-2" src="https://htmlstream.com/preview/front-v4.2/html/assets/img/900x450/img14.jpg" alt="Image">
-            <a class="js-inline-video-player video-player-btn video-player-centered" href="javascript:;"
-               data-hs-video-player-options='{
-                 "videoId": "d4eDWc8g0e0",
-                 "parentSelector": "#youTubeVideoPlayer",
-                 "targetSelector": "#youTubeVideoIframe",
-                 "isAutoplay": true
-               }'>
+            <a class="js-inline-video-player video-player-btn video-player-centered">
               <span class="video-player-icon shadow-sm">
                 <i class="bi-play-fill"></i>
               </span>
@@ -243,10 +247,12 @@
   
           <table class="table table-hover  mt-3">
             <thead class="bg-danger text-uppercase">
-              <th class="text-white">Masculino femenino</th>
-              <th class="text-white">1er Lugar</th>
-              <th class="text-white">2do Lugar</th>
-              <th class="text-white">3er Lugar</th>
+              <tr>
+                <th class="text-white">Masculino femenino</th>
+                <th class="text-white">1er Lugar</th>
+                <th class="text-white">2do Lugar</th>
+                <th class="text-white">3er Lugar</th>
+              </tr>
             </thead>
             <tbody>
               <tr>
@@ -464,3 +470,12 @@
   </div>
   <br><br>
   <app-footer></app-footer>
+  <!--  -->
+  <div [hidden]="spinner" class="overlay z-index">
+    <div class="dot-wave">
+      <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+    </div>
+  </div>
