@@ -12,7 +12,7 @@ export const routes: Routes = [
     import('./paginas/carrito/carrito.component').then((c) => c.CarritoComponent) 
   },
   {
-    path: 'inscripcion',
+    path: 'inscripcion/:id',
     loadComponent: () => 
     import('./paginas/inscripcion/inscripcion.component').then((c) => c.InscripcionComponent) 
   },
@@ -21,11 +21,7 @@ export const routes: Routes = [
     loadComponent: () => 
     import('./paginas/detallecompra/detallecompra.component').then((c) => c.DetallecompraComponent) 
   },
-  {
-    path: 'fotografias',
-    loadComponent: () => 
-    import('./paginas/fotografias/fotografias.component').then((c) => c.FotografiasComponent) 
-  },
+ 
   {
     path: 'iniciarsesion',
     loadComponent: () => 
@@ -42,5 +38,10 @@ export const routes: Routes = [
     path: 'zonasport',
     loadComponent: () => 
     import('./zonasport/zonadeportista/zonadeportista.component').then((c) => c.ZonadeportistaComponent) 
+  },
+  {
+    path: 'fotografias',
+    loadComponent: () => 
+    import('./paginas/fotografias/fotografias.component').then((c) => c.FotografiasComponent) 
   },
 ];

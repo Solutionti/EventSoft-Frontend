@@ -8,7 +8,11 @@
               <div class="swiper-wrapper">
                 <div class="swiper-slide">
                   <div class="card card-bordered shadow-none">
-                    <img class="card-img" src="https://gfcm.com.co/wp-content/uploads/2024/02/assetes.webp" alt="Image Description">
+                    <img
+                      class="card-img"
+                      src="{{ imagen }}"
+                      alt="Image Description"
+                    >
                   </div>
                 </div>
               </div>
@@ -18,7 +22,11 @@
                 <div class="swiper-wrapper">
                   <div class="swiper-slide">
                     <a class="avatar avatar-circle" href="javascript:;">
-                      <img class="avatar-img" src="https://gfcm.com.co/wp-content/uploads/2024/02/assetes.webp" alt="Image Description">
+                      <img
+                        class="avatar-img"
+                        src="{{ imagen }}"
+                        alt="Image Description"
+                      >
                     </a>
                   </div>
                 </div>
@@ -35,10 +43,10 @@
           <img src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
           <img src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
           <img src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/illustrations/star.svg" alt="Review rating" width="16">
-          <span class="ms-1">287 Vistas</span>
+          <span class="ms-1">{{ vistas }} Vistas</span>
         </a>
         <div class="mb-5">
-          <h1 class="h2">Gran Fondo Hombre</h1>
+          <h1 class="h2 text-uppercase ">{{ nombre }}</h1>
           <p>Categoría A 18 – 35 años (2006 – 1989)</p>
           <p>Categoría B 36-45 años (1988 – 1979)</p>
           <p>Categoría C 46 – 55 años (1978 – 1969)</p>
@@ -47,22 +55,26 @@
         <div class="mb-5">
           <span class="d-block mb-2">Total:</span>
           <div class="d-flex align-items-center">
-            <h3 class="mb-0">$450.000</h3>
+            <h3 class="mb-0">${{ precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</h3>
           </div>
         </div>
         <div class="quantity-counter mb-3">
           <div class="js-quantity-counter row align-items-center">
             <div class="col">
               <span class="d-block small">Cantidad</span>
-              <input class="js-result form-control form-control-quantity-counter" type="text" value="1">
+              <input 
+                class="js-result form-control form-control-quantity-counter"
+                type="text"
+                value="{{cantidad}}"
+              >
             </div>
             <div class="col-auto">
-              <a class="js-minus btn btn-outline-secondary btn-xs btn-icon rounded-circle" href="javascript:;">
+              <a class="js-minus btn btn-outline-secondary btn-xs btn-icon rounded-circle" (click)="restarcantidad()">
                 <svg width="8" height="2" viewBox="0 0 8 2" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M0 1C0 0.723858 0.223858 0.5 0.5 0.5H7.5C7.77614 0.5 8 0.723858 8 1C8 1.27614 7.77614 1.5 7.5 1.5H0.5C0.223858 1.5 0 1.27614 0 1Z" fill="currentColor"/>
                 </svg>
               </a>
-              <a class="js-plus btn btn-outline-secondary btn-xs btn-icon rounded-circle" href="javascript:;">
+              <a class="js-plus btn btn-outline-secondary btn-xs btn-icon rounded-circle" (click)="sumarCantidad()">
                 <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M4 0C4.27614 0 4.5 0.223858 4.5 0.5V3.5H7.5C7.77614 3.5 8 3.72386 8 4C8 4.27614 7.77614 4.5 7.5 4.5H4.5V7.5C4.5 7.77614 4.27614 8 4 8C3.72386 8 3.5 7.77614 3.5 7.5V4.5H0.5C0.223858 4.5 0 4.27614 0 4C0 3.72386 0.223858 3.5 0.5 3.5H3.5V0.5C3.5 0.223858 3.72386 0 4 0Z" fill="currentColor"/>
                 </svg>
@@ -70,47 +82,92 @@
             </div>
           </div>
         </div>
+        <!--  -->
+        <form [formGroup]="carritoForm">
         <div class="accordion mb-5" id="shopCartAccordion">
           <div class="accordion-item">
-            <a class="accordion-button collapsed" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseOne" aria-expanded="false" aria-controls="shopCartAccordionCollapseOne">
-              <div class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                  <span class="svg-icon svg-icon-sm text-primary">
-  
-                  </span>
+              <a class="accordion-button collapsed" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseOne" aria-expanded="false" aria-controls="shopCartAccordionCollapseOne">
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <span class="svg-icon svg-icon-sm text-primary">
+    
+                    </span>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    Seleccine la Categoria
+                  </div>
                 </div>
-                <div class="flex-grow-1 ms-3">
-                  Categoria
+              </a>
+              <div id="shopCartAccordionCollapseOne" class="accordion-collapse collapse show" data-bs-parent="#shopCartAccordion">
+                <div class="accordion-body">
+                  <select
+                    class="form-control form-control-sm"
+                    formControlName="categoria_carrito"
+                  >
+                    <option value="">Seleccione la categoria</option>
+                    <option value="A">Categoría A 18 – 35 años</option>
+                    <option value="B">Categoría B 36-45 años</option>
+                    <option value="C">Categoría C 46 – 55 años</option>
+                    <option value="D">Categoría D 56 +</option>
+                  </select>
                 </div>
               </div>
-            </a>
-            <div id="shopCartAccordionCollapseOne" class="accordion-collapse collapse" data-bs-parent="#shopCartAccordion">
-              <div class="accordion-body">
-                <p class="mb-0">We offer free shipping anywhere in the U.S. A skilled delivery team will bring the boxes into your office.</p>
-              </div>
-            </div>
           </div>
           <div class="accordion-item">
-            <a class="accordion-button collapsed" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseTwo" aria-expanded="false" aria-controls="shopCartAccordionCollapseTwo">
-              <div class="d-flex align-items-center">
-                <div class="flex-shrink-0">
-                  <span class="svg-icon svg-icon-sm text-primary">
-                  </span>
+              <a class="accordion-button collapsed" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#shopCartAccordionCollapseTwo" aria-expanded="false" aria-controls="shopCartAccordionCollapseTwo">
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <span class="svg-icon svg-icon-sm text-primary">
+                    </span>
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    Talla Jersey
+                  </div>
                 </div>
-                <div class="flex-grow-1 ms-3">
-                  Talla Jersey
+              </a>
+              <div id="shopCartAccordionCollapseTwo" class="accordion-collapse collapse show" data-bs-parent="#shopCartAccordion">
+                <div class="accordion-body">
+                  <select
+                    class="form-control form-control-sm"
+                    formControlName="jersy_carrito"
+                  >
+                    <option value="">Seleccione la talla del jersy</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                  </select>
                 </div>
               </div>
-            </a>
-            <div id="shopCartAccordionCollapseTwo" class="accordion-collapse collapse" data-bs-parent="#shopCartAccordion">
-              <div class="accordion-body">
-                <p class="mb-0">If you're not satisfied, return it for a full refund. We'll take care of disassembly and return shipping.</p>
-              </div>
-            </div>
           </div>
         </div>
+      </form>
+        <!--  -->
         <div class="d-grid mb-4">
-          <button type="button" class="btn btn-primary btntransition">Agregar al carrito</button>
+          <button
+            type="button"
+            class="btn btn-primary btntransition"
+            (click)="AgregarCarritoCompras()"
+            [disabled]="carritoForm.invalid"
+            [hidden]="carritoBtn"
+          >
+            Agregar al carrito
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger btntransition mt-2"
+            [hidden]="pasarBtn"
+          >
+            Seguir comprando
+          </button>
+          <button
+            type="button"
+            class="btn btn-success btntransition mt-2"
+            [hidden]="pasarBtn"
+          >
+            Pasar a pedido
+          </button>
         </div>
         <div class="d-flex align-items-center">
           <div class="flex-shrink-0">
