@@ -23,10 +23,22 @@
     </li>
   </ul>
 </footer>
-  <a
-    type="button"
-    class="btn btn-dark btn-icon fixedButton avatar-circle btn-md"
-    routerLink="/carrito"
-  >
-    <div><i class="fas fa-shopping-cart"></i></div>
-  </a>
+  <!-- <div class="btn btn-dark btn-icon fixedButton avatar-circle btn-md">
+    <small class="text-xs mx-1 mb-3 badge bg-light text-dark ">1</small>
+    <a
+      type="button"
+      routerLink="/carrito"
+    >
+      <div>
+        <i class="fas fa-shopping-cart fa-xs text-white"></i></div>
+    </a> 
+  </div> -->
+  <div class="avatar avatar-md avatar-circle me-2 fixedButton bg-dark">
+    <a
+      type="button"
+      routerLink="/carrito"
+    >
+      <i class="fas fa-shopping-cart fa-xs text-white mx-2"></i>
+      <span class="avatar-status avatar-status-danger">{{ cantidadElementos }}</span>
+    </a>
+  </div>

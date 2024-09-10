@@ -25,9 +25,13 @@ export class CarritoComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargaPagina();
+    this.mostrarCarritoComprar();
+    this.calcularTotalCarrito();
   }
 
   spinner = true;
+  total: any = 0;
+  
 
   cargaPagina() {
     const intervalId = setInterval(() => {
@@ -46,4 +50,28 @@ export class CarritoComponent implements OnInit {
       clearInterval(intervalId2);
     }, 4000); // Detiene la ejecución después de 3 segundos
   }
+
+  carritoCompra: any[] = [];
+  mostrarCarritoComprar() {
+    const carrito = localStorage.getItem('carrito');
+
+    if(carrito) {
+      this.carritoCompra = JSON.parse(carrito);
+    }
+  }
+
+  calcularTotalCarrito() {
+    const carrito = localStorage.getItem('carrito');
+    let total = 0;
+    if(carrito) {
+      this.carritoCompra = JSON.parse(carrito);
+      this.carritoCompra.forEach(item => {
+        total = (total + item.precio * item.cantidad);
+      });
+    }
+
+    this.total = total.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+    
+  }
+  
 }

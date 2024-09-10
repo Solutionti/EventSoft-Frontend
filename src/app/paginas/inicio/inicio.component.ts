@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MenuComponent } from '../../componentes/menu/menu.component';
 import { FooterComponent } from "../../componentes/footer/footer.component";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PaginaService } from '../services/pagina.service';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-inicio',
@@ -21,7 +20,13 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'
 })
+
 export class InicioComponent implements OnInit {
+
+  dias: any = 0;
+  horas: any = 0;
+  minutos: any = 0;
+  segundos: any = 0;
 
   constructor(
     private paginaServices: PaginaService
@@ -29,10 +34,11 @@ export class InicioComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    this.cargaPagina();
-    this.getServiciosInicio();
+  ngOnInit() {
+    // this.cargaPagina();
+    // this.getServiciosInicio();
   }
+
 
   spinner = true;
 
@@ -72,5 +78,6 @@ export class InicioComponent implements OnInit {
           this.servicios = response;
         });
   }
+
   
 }

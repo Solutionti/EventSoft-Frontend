@@ -4,43 +4,81 @@
     <div class="card card-bordered">
       <div class="card-body">
           <div class="col-md-12">
-            <table class="table table-nowrap table-align-middle">
+            <!--  -->
+            <div class="container" *ngIf="carritoCompra.length == 0">
+              <div class="w-md-75 w-lg-50 text-center mx-md-auto">
+                <div class="mb-5">
+                  <img
+                    class="img-fluid"
+                    src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/illustrations/oc-empty-cart.svg"
+                    alt="Image Description"
+                    style="width: 8rem;"
+                  >
+                </div>
+                <div class="mb-5">
+                  <h1 class="h2">Su carrito está actualmente vacío</h1>
+                    <p>
+                      Antes de proceder al pago debe agregar algunos productos a su carrito de compras.
+                      Encontrará muchos productos interesantes en nuestra página "Tienda".
+                    </p>
+                </div>
+              </div>
+            </div>
+            <!--  --> 
+            <table class="table table-nowrap table-align-middle"  *ngIf="carritoCompra.length > 0">
               <thead class="thead-light">
                 <tr>
                   <th></th>
                   <th>Precio</th>
                   <th>Cantidad</th>
                   <th>Subtotal</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let carrito of carritoCompra">
                   <td>
-                    <a class="d-flex" href="#">
+                    <a class="d-flex">
                       <div class="flex-shrink-0">
                         <div class="avatar avatar-circle avatar-lg ">
-                          <img class="avatar-img" src="https://htmlstream.com/preview/front-v4.2/html/assets/img/160x160/img10.jpg" alt="Image Description">
+                          <img class="avatar-img" src="{{ carrito.imagen }}" alt="Image Description">
                         </div>
                       </div>
                       <div class="flex-grow-1 ms-3">
-                        <span class="d-block h5 text-inherit mb-0">Gran fondo hombre<i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-placement="top" title="Top endorsed"></i></span>
-                        <span class="d-block font-size-sm text-body">Hombre: Categoría B</span>
-                        <span class="d-block font-size-sm text-body">Talla Jersey: M</span>
+                        <span class="d-block h5 text-inherit mb-0">{{ carrito.nombre }}<i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-placement="top" title="Top endorsed"></i></span>
+                        <span class="d-block font-size-sm text-body">Hombre: Categoría {{ carrito.categoria }}</span>
+                        <span class="d-block font-size-sm text-body">Talla Jersey: {{ carrito.jersy }}</span>
                       </div>
                     </a>
                   </td>
-                  <td>$ 450.000</td>
-                  <td><input type="number" class="form-control form-control-sm" style="width: 70px !important;"></td>
-                  <td>$ 450.000</td>
+                  <td>$ {{ carrito.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                  <td>
+                    <input
+                      type="number"
+                      class="form-control form-control-sm"
+                      style="width: 70px !important;"
+                      value="{{ carrito.cantidad }}"
+                    >
+                  </td>
+                  <td>$ {{ (carrito.precio * carrito.cantidad).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                  <td>
+                    <a
+                      class="text-body"
+                      data-bs-toggle="tooltip"
+                      data-bs-placement="top"
+                      data-bs-html="true"
+                      title="Borrar"
+                      (click)="calcularTotalCarrito()"
+                    >
+                      <i class="fas fa-trash text-danger"></i>
+                    </a>
+                  </td>
                 </tr>
               </tbody>
             </table>
-            <div class="row mt-4">
-              <div class="col-md-3">
-                <input type="text" class="form-control form-control-sm" placeholder="Còdigo del cupòn">
-              </div>
+            <div class="row mt-4" *ngIf="carritoCompra.length > 0">
               <div class="col-md-2">
-                <button class="btn btn-danger btn-sm">Aplicar cupòn</button>
+                <button class="btn btn-danger btn-sm">Vaciar Carrito</button>
               </div>
             </div>
           </div>
@@ -55,18 +93,19 @@
               <small class="text-muted">2 days ago</small>
             </div>
             <div class="card-body">
-              <h4 class="card-title">Subtotal</h4><small>	$4.050.000</small>
+              <h4 class="card-title">Subtotal</h4><small>	${{ total }}</small>
               <hr>
-              <h4 class="card-title text-muted">Envio	envio gratuito</h4>
+              <h4 class="card-title">Envio	envio gratuito $0</h4>
               <hr>
-              <h4 class="card-title">Total	</h4> <span>$4.050.000</span>
+              <h4 class="card-title">Total	</h4> <span>${{ total}}</span>
               <hr>
-              <a
+              <button
+                role="button"
                 routerLink="/detallecompra"
                 class="btn btn-primary mt-5"
               >
                 Finalizar compra
-              </a>
+            </button>
             </div>
           </div>
     </div>

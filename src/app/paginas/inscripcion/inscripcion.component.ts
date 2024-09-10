@@ -4,6 +4,8 @@ import { FooterComponent } from "../../componentes/footer/footer.component";
 import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import { PaginaService } from '../services/pagina.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-inscripcion',
@@ -13,16 +15,20 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
     RouterLink,
     MenuComponent,
     FooterComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   templateUrl: './inscripcion.component.html',
-  styleUrl: './inscripcion.component.css'
+  styleUrl: './inscripcion.component.css',
+  providers: [ConfirmationService,MessageService]
 })
 export class InscripcionComponent implements OnInit {
 
   constructor(
     private paginaServices: PaginaService,
     private route: ActivatedRoute,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) {
 
   }
@@ -93,8 +99,25 @@ export class InscripcionComponent implements OnInit {
   carrito: any = [];
   AgregarCarritoCompras() {
 
-    this.carrito.push(
-      {
+    if(localStorage.getItem('carrito') === null) {
+      this.carrito.push(
+        {
+          codigo: this.servicio,
+          nombre: this.nombre,
+          precio: (this.precio * this.cantidad),
+          imagen: this.imagen,
+          cantidad: this.cantidad,
+          categoria: this.carritoForm.get("categoria_carrito")?.value,
+          jersy: this.carritoForm.get("jersy_carrito")?.value
+        }
+      );
+      localStorage.setItem('carrito', JSON.stringify(this.carrito));
+    }
+    else {
+      let caritostorage: any  = localStorage.getItem('carrito');
+      let carrito = JSON.parse(caritostorage);
+      
+      carrito.push({
         codigo: this.servicio,
         nombre: this.nombre,
         precio: (this.precio * this.cantidad),
@@ -102,11 +125,21 @@ export class InscripcionComponent implements OnInit {
         cantidad: this.cantidad,
         categoria: this.carritoForm.get("categoria_carrito")?.value,
         jersy: this.carritoForm.get("jersy_carrito")?.value
-      }
-    );
+      });
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+    // 
+    this.carritoBtn = true;
+    this.pasarBtn = false;
 
-    localStorage.setItem('carrito', JSON.stringify(this.carrito));
-    const dd: any  = localStorage.getItem('carrito');
-    console.log(JSON.parse(dd));
+    this.showSuccess("La inscripcion se ha vinculado a su carrito de compras")
+  }
+
+  showSuccess(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Gran fondo  Aviso',
+      detail: message
+    });
   }
 }
