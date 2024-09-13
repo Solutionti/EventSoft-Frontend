@@ -1,0 +1,31 @@
+<app-menu></app-menu>
+<br>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="text-center">
+        <img
+          class="img-fluid"
+          src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/illustrations/oc-empty-cart.svg"
+          style="width: 5rem;"
+        >
+        <p class="h3 mt-4 text-muted">
+          Se ha registrado el pedido correctamente, pronto sera contactado
+          con uno de nuestros asesores.
+        </p>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+<!--  -->
+<div [hidden]="spinner" class="overlay z-index">
+  <div class="dot-wave">
+    <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+      <div class="dot-wave__dot"></div>
+    </div>
+</div>

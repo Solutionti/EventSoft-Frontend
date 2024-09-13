@@ -3,6 +3,8 @@ import { MenuComponent } from "../../componentes/menu/menu.component";
 import { FooterComponent } from "../../componentes/footer/footer.component";
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-carrito',
@@ -12,26 +14,31 @@ import { CommonModule } from '@angular/common';
     RouterLink,
     MenuComponent,
     FooterComponent,
-    CommonModule
+    CommonModule,
+    ToastModule
   ],
   templateUrl: './carrito.component.html',
-  styleUrl: './carrito.component.css'
+  styleUrl: './carrito.component.css',
+  providers: [ConfirmationService,MessageService]
 })
 export class CarritoComponent implements OnInit {
   
-  constructor() {
+  constructor(
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
+  ) {
 
   }
 
   ngOnInit(): void {
-    this.cargaPagina();
     this.mostrarCarritoComprar();
+    this.cargaPagina();
     this.calcularTotalCarrito();
   }
 
   spinner = true;
   total: any = 0;
-  
+  fecha = "Detalle de la factura";
 
   cargaPagina() {
     const intervalId = setInterval(() => {
@@ -72,6 +79,21 @@ export class CarritoComponent implements OnInit {
 
     this.total = total.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
     
+  }
+
+  vaciarCarrito() {
+    localStorage.removeItem('carrito');
+    this.carritoCompra = [];
+    this.calcularTotalCarrito();
+    this.showSuccess("Se ha eliminado los items del carrito de compras");
+  }
+
+  showSuccess(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Gran fondo  Aviso',
+      detail: message
+    });
   }
   
 }

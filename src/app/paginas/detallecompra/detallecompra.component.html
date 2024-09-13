@@ -233,9 +233,16 @@
               <div class="border-bottom pb-4 mb-4">
                 <h3 class="card-header-title">Resumen del Pedido</h3>
               </div>
+              <form [formGroup]="promocionalForm">
                 <div class="border-bottom pb-4 mb-3">
-                  <input type="text" class="form-control" name="name" placeholder="Ingresa codigo promocional" aria-label="Enter promo code">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Ingresa codigo promocional"
+                    formControlName="codigo_promocional"
+                  >
                 </div>
+              </form>
                 <div class="border-bottom pb-4 mb-4">
                   <div class="d-grid gap-3">
                     <dl class="row">
@@ -261,6 +268,7 @@
                 <div class="d-grid">
                   <button
                     class="btn btn-primary btn-lg"
+                    (click)="CrearInscripcionesDetalle()"
                     [disabled]="detalleFacturacionForm.invalid"
                   >
                     Realizar pedido

@@ -21,7 +21,12 @@ export const routes: Routes = [
     loadComponent: () => 
     import('./paginas/detallecompra/detallecompra.component').then((c) => c.DetallecompraComponent) 
   },
- 
+  {
+    path: 'mensajefinal',
+    loadComponent: () => 
+    import('./paginas/mensajefinal/mensajefinal.component').then((c) => c.MensajefinalComponent) 
+  },
+
   {
     path: 'iniciarsesion',
     loadComponent: () => 

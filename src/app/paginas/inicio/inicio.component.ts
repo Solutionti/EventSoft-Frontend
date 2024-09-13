@@ -23,10 +23,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 export class InicioComponent implements OnInit {
 
-  dias: any = 0;
-  horas: any = 0;
-  minutos: any = 0;
-  segundos: any = 0;
 
   constructor(
     private paginaServices: PaginaService
@@ -35,12 +31,23 @@ export class InicioComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.cargaPagina();
-    // this.getServiciosInicio();
+    this.cargaPagina();
+    this.getServiciosInicio();
+    
+  }
+
+  ngAfterViewInit(): void {
+    // Crear un nuevo elemento script
+    const script = document.createElement('script');
+    script.src = 'assets/js/pagina.js'; // Ruta del archivo JS
+    script.async = true;
+    document.body.appendChild(script);
   }
 
 
   spinner = true;
+  direccionEvento = "Carrera 26 # 67 - 30 mall center";
+  horaFechaEvento = "8:00 AM, 25 de DICIEMBRE 2024"
 
   cargaPagina() {
     const intervalId = setInterval(() => {
@@ -78,6 +85,5 @@ export class InicioComponent implements OnInit {
           this.servicios = response;
         });
   }
-
   
 }
