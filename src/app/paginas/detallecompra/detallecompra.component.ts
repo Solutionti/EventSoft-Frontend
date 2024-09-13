@@ -32,6 +32,7 @@ export class DetallecompraComponent implements OnInit {
     this.cargaPagina();
     this.mostrarCarritoComprar();
     this.calcularTotalCarrito();
+    this.getDepartamentos();
   }
 
   spinner = true;
@@ -73,6 +74,15 @@ export class DetallecompraComponent implements OnInit {
     setTimeout(() => {
       clearInterval(intervalId2);
     }, 4000); // Detiene la ejecución después de 3 segundos
+  }
+
+  departamentos: any[] = [];
+  getDepartamentos() {
+    this.paginaServices
+        .getDepartamentos()
+        .subscribe((response: any ) => {
+          this.departamentos = response;
+        })
   }
 
   carritoCompra: any[] = [];

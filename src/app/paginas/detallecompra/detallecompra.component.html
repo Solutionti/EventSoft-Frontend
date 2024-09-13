@@ -122,6 +122,13 @@
                   formControlName="departamento_facturacion"
                 >
                   <option value="">Selecciona el departamento</option>
+                  <option value="0001">Departamento Extranjero</option>
+                  <option
+                    *ngFor="let departamento of departamentos"
+                    [value]="departamento.codigo_departamento"
+                  >
+                    {{ departamento.descripcion }}
+                  </option>
                 </select>
               </div>
               <div class="col-md-6">

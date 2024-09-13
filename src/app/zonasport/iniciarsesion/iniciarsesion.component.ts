@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -8,6 +9,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   imports: [
     RouterOutlet,
     RouterLink,
+    ReactiveFormsModule
   ],
   templateUrl: './iniciarsesion.component.html',
   styleUrl: './iniciarsesion.component.css'
@@ -23,6 +25,11 @@ export class IniciarsesionComponent implements OnInit {
   }
 
   spinner = true;
+
+  iniciarSesionForm = new FormGroup({
+    correo_iniciar: new FormControl('', Validators.required),
+    contrasena_iniciar: new FormControl('', Validators.required),
+  });
 
   cargaPagina() {
     const intervalId = setInterval(() => {

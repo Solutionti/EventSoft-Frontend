@@ -1,6 +1,5 @@
 (function () {
-    // INITIALIZATION OF COUNTDOWN
-    // =======================================================
+ 
     const oneYearFromNow = new Date('2024-09-12 22:00:00')
 
     document.querySelectorAll('.js-countdown').forEach(item => {

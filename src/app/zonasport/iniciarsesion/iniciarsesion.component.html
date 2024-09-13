@@ -1,4 +1,3 @@
- <!-- ========== HEADER ========== -->
  <header id="header" class="navbar navbar-expand navbar-light navbar-absolute-top">
     <div class="container-fluid">
       <nav class="navbar-nav-wrap">
@@ -34,17 +33,6 @@
               </figcaption>
             </figure>
             <div class="position-absolute start-0 end-0 bottom-0 text-center p-5">
-              <!-- <div class="row justify-content-center">
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/brands/fitbit-white.svg" alt="Logo">
-                </div>
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/brands/business-insider-white.svg" alt="Logo">
-                </div>
-                <div class="col text-center py-3">
-                  <img class="avatar avatar-lg avatar-4x3" src="https://htmlstream.com/preview/front-v4.2/html/assets/svg/brands/capsule-white.svg" alt="Logo">
-                </div>
-              </div> -->
             </div>
           </div>
         </div>
@@ -54,13 +42,13 @@
               <h1 class="h2">Bienvenido a ZonaSport</h1>
               <p>Inicie sesión para administrar su cuenta.</p>
             </div>
-            <form class="js-validate needs-validation" novalidate>
+            <form class="js-validate needs-validation" [formGroup]="iniciarSesionForm">
               <div class="mb-4">
                 <label class="form-label" for="signupModalFormLoginEmail">Ingrese su Email</label>
                 <input
                   type="email"
                   class="form-control form-control-lg"
-                  name="email"
+                  formControlName="correo_iniciar"
                 >
               </div>
               <div class="mb-4">
@@ -72,7 +60,7 @@
                   <input
                     type="password"
                     class="js-toggle-password form-control form-control-lg"
-                    name="password"
+                    formControlName="contrasena_iniciar"
                   >
                   <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
                     <i id="changePassIcon" class="fas fa-eye-slash"></i>
@@ -80,10 +68,16 @@
                 </div>
               </div>
               <div class="d-grid mb-3">
-                <button type="submit" class="btn btn-primary btn-lg">Iniciar Sesion</button>
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-lg"
+                  [disabled]="iniciarSesionForm.invalid"
+                >
+                  Iniciar Sesion
+                </button>
               </div>
               <div class="text-center">
-                <p>¿Aún no tienes una cuenta? <a class="link" href="./page-signup.html">Regístrate aquí</a></p>
+                <p>¿Aún no tienes una cuenta? <a class="link" href="#">Solicitala aqui</a></p>
               </div>
             </form>
           </div>

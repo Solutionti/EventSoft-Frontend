@@ -30,10 +30,10 @@ export const routes: Routes = [
   {
     path: 'iniciarsesion',
     loadComponent: () => 
-    import('./paginas/iniciarsesion/iniciarsesion.component').then((c) => c.IniciarsesionComponent) 
+    import('./zonasport/iniciarsesion/iniciarsesion.component').then((c) => c.IniciarsesionComponent) 
   },
 
-  // RUTAS DE ADMINISTRACION
+  // RUTAS DE ADMINISTRACION ZONA SPORT
   {
     path: 'tuqr',
     loadComponent: () => 
@@ -47,6 +47,34 @@ export const routes: Routes = [
   {
     path: 'fotografias',
     loadComponent: () => 
-    import('./paginas/fotografias/fotografias.component').then((c) => c.FotografiasComponent) 
+    import('./zonasport/fotografias/fotografias.component').then((c) => c.FotografiasComponent) 
   },
+
+  // RUTAS DE ADMINISTRACION
+  {
+    path: 'administracion/configuracion',
+    loadComponent: () => 
+    import('./administracion/configuracionevento/configuracionevento.component').then((c) => c.ConfiguracioneventoComponent) 
+  },
+  {
+    path: 'administracion/inscripciones',
+    loadComponent: () => 
+    import('./administracion/inscripciones/inscripciones.component').then((c) => c.InscripcionesComponent) 
+  },
+  {
+    path: 'administracion/deportistas',
+    loadComponent: () => 
+    import('./administracion/deportistas/deportistas.component').then((c) => c.DeportistasComponent) 
+  },
+  {
+    path: 'administracion/pedidos',
+    loadComponent: () => 
+    import('./administracion/pedidos/pedidos.component').then((c) => c.PedidosComponent) 
+  },
+  {
+    path: 'administracion/reportes',
+    loadComponent: () => 
+    import('./administracion/reportes/reportes.component').then((c) => c.ReportesComponent) 
+  },
+
 ];

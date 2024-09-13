@@ -10,6 +10,12 @@ export class PaginaService {
     private http: HttpClient
   ) { }
 
+  getDepartamentos() {
+    const url = "http://localhost:8000/api/getDepartamentos";
+
+    return this.http.get(url);
+  }
+
   getServiciosInicio() {
     const url = "http://localhost:8000/api/getServiciosInicio";
 
