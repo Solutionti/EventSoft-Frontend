@@ -4,7 +4,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 
 <div class="min-height-300 bg-default position-absolute w-100"></div>
-<app-menu></app-menu>
+<app-menuadmin></app-menuadmin>
 <main class="main-content position-relative border-radius-lg">
   <div class="container-fluid py-6">
     <div class="row ">
@@ -20,7 +20,7 @@
                 </ol>
               </nav>
               <div class="d-flex align-items-center mt-3">
-                <p class="mb-0 h6 text-uppercase ">Lista de Deporstistas inscritos</p>
+                <p class="mb-0 h6 text-uppercase ">Lista de Deportistas inscritos</p>
                 <!-- <button
                   class="btn btn-primary text-white font-weight-bold btn-xs ms-auto"
                 > 
@@ -42,26 +42,82 @@
         <div class="row mt-1">
           <div class="col-md-12">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
-                <thead class="bg-dark">
+              <p-table
+                  #deportista
+                  [value]="deportistas"
+                  [rows]="10"
+                  [paginator]="true"
+                  [globalFilterFields]="['documento', 'deportista.documento', 'nombre', 'deportistas.nombre']"
+                  [tableStyle]="{ 'min-width': '75rem' }"
+                  [rowHover]="true"
+                  dataKey="id"
+                  currentPageReportTemplate="Mostrando del {first} al {last} de {totalRecords} entradas"
+                >
+                <ng-template pTemplate="caption">
+                  <div class="flex align-items-center justify-content-between">
+                    <span class="p-input-icon-left">
+                      <i class="pi pi-search"></i>
+                      <input
+                        pInputText
+                        type="text"
+                        class="form-control"
+                        (input)="deportista.filterGlobal($any($event.target).value, 'contains')"
+                        placeholder="Buscar..."
+                      />
+                    </span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="header">
                   <tr>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Tipo documento</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Documento</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Nombre completo</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Fecha nacimiento</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Departamento</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Ciudad</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Direccion</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Telefono</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Correo</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">RH</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Seguro medico</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Estado</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12"></th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12" pSortableColumn="documento">Nombre completo</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Fecha nacimiento</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Departamento</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Ciudad</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Direccion</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Telefono</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Correo</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">RH</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Seguro medico</th>
+                    <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Estado</th>
                   </tr>
-                </thead>
-                <tbody></tbody>
-              </table>
+                </ng-template>
+                <ng-template pTemplate="body" let-deportistas>
+                  <tr>
+                    <td>
+                      <a
+                        class="badge bg-success"
+                        
+                      >
+                        <i class="fas fa-check fa-xs text-white"></i>
+                      </a>
+                    </td>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img
+                            src="https://radiarte.com/application/files/6917/0923/2244/depositphotos_134255588-stock-illustration-empty-photo-of-male-profile.jpg"
+                            class="avatar avatar-sm me-3"
+                          >
+                        </div>
+                        <div class="d-flex flex-column justify-content-center">
+                          <p class="mb-0 text-xs text-uppercase" >{{ deportistas.nombre + '' + deportistas.apellido }}</p>
+                          <p class="text-xs text-secondary mb-0 text-uppercase">{{ deportistas.tipo_documento+ ' - ' + deportistas.documento }}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-xs text-uppercase">{{ deportistas.fecha_nacimiento }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.departamento }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.ciudad }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.direccion }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.telefono }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.correo_electronico }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.rh }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.seguro_medico }}</td>
+                    <td class="text-xs text-uppercase">{{ deportistas.estado }}</td>
+                  </tr>
+                </ng-template>
+               </p-table>
               <br>
               <br>
               <br>

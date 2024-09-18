@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { MenuComponent } from "../menu/menu.component";
+import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.component";
 
 @Component({
   selector: 'app-reportes',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [ MenuadminComponent],
   templateUrl: './reportes.component.html',
   styleUrl: './reportes.component.css'
 })

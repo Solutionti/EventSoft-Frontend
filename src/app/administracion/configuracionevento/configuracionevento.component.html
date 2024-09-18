@@ -4,7 +4,7 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
 
 <div class="min-height-300 bg-default position-absolute w-100"></div>
-<app-menu></app-menu>
+<app-menuadmin></app-menuadmin>
 <main class="main-content position-relative border-radius-lg">
   <div class="container-fluid py-6">
     <div class="row ">
@@ -51,22 +51,33 @@
           </div>
         <div class="row mt-1">
           <div class="col-md-8">
+            <h6>USUARIOS</h6>
             <div class="table-responsive">
               <table class="table table-striped table-hover">
                 <thead class="bg-dark">
                   <tr>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Inscripcion</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Codigo</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Documento</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Nombre completo</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Telefono</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Correo</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Rol usuario</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Estado</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Producto</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Categoria</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Jersy</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">kit</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Cantidad</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">¿Obsequio? </th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <tr *ngFor="let usuario of usuarios">
+                    <td class="text-xs text-uppercase"></td>
+                    <td class="text-xs text-uppercase">{{ usuario.codigo_deportista }}</td>
+                    <td class="text-xs text-uppercase">{{ usuario.documento }}</td>
+                    <td class="text-xs text-uppercase">{{ usuario.nombre + '' + usuario.apellido }}</td>
+                    <td class="text-xs text-uppercase">{{ usuario.telefono }}</td>
+                    <td class="text-xs ">{{ usuario.correo_electronico }}</td>
+                    <td class="text-xs text-uppercase">{{ usuario.rol_usuario }}</td>
+                    <td class="text-xs text-uppercase">{{ usuario.estado }}</td>
+                  </tr>
+                </tbody>
               </table>
               <br>
               <br>
@@ -74,6 +85,7 @@
             </div>
           </div>
           <div class="col-md-4">
+            <h6>CODIGOS PROMOCIONALES</h6>
             <table class="table table-striped table-hover">
               <thead class="bg-dark">
                 <tr>
@@ -84,12 +96,21 @@
                   <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Estado</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr *ngFor="let codigo of codigos">
+                  <td></td>
+                  <td class="text-xs text-uppercase">{{ codigo.documento}}</td>
+                  <td class="text-xs text-uppercase">{{ codigo.codigo_promocional}}</td>
+                  <td class="text-xs text-uppercase">{{ codigo.precio}}</td>
+                  <td class="text-xs text-uppercase">{{ codigo.estado}}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
           <div class="col-md-5">
+            <h6>PATROCINIOS</h6>
             <div class="table-responsive">
               <table class="table table-striped table-hover">
                 <thead class="bg-dark">
@@ -99,15 +120,25 @@
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Nombre</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Descripcion</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Valor Aporte</th>
-                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Juramento</th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <tr *ngFor="let patrocinio of patrocinios">
+                    <td></td>
+                    <td>
+                      <img src="{{ patrocinio.logo }}" class="avatar avatar-sm">
+                    </td>
+                    <td class="text-xs text-uppercase">{{ patrocinio.nombre }}</td>
+                    <td class="text-xs text-uppercase">{{ patrocinio.descripcion }}</td>
+                    <td class="text-xs text-uppercase">{{ patrocinio.valor }}</td>
+                  </tr>
+                </tbody>
               </table>
 
             </div>
           </div>
           <div class="col-md-7">
+            <h6>PRODUCTOS O SERVICIOS</h6>
             <table class="table table-striped table-hover">
               <thead class="bg-dark">
                 <tr>
@@ -120,7 +151,24 @@
                   <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Estado</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody>
+                <tr *ngFor="let servicio of servicios">
+                  <td></td>
+                  <td>
+                    <div class="text-center">
+                      <img
+                        src="{{servicio.url_imagen}}"
+                        class="avatar avatar-xs"
+                        >
+                    </div>
+                  </td>
+                  <td class="text-xs text-uppercase">{{ servicio.codigo_servicio }}</td>
+                  <td class="text-xs text-uppercase">{{ servicio.nombre }}</td>
+                  <td class="text-xs text-uppercase">{{ servicio.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                  <td class="text-xs text-uppercase">{{ servicio.vistas }}</td>
+                  <td class="text-xs text-uppercase">{{ servicio.estado }}</td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>

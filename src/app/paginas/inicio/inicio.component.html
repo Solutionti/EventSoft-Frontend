@@ -98,10 +98,11 @@
               <h4 class="text-info">${{ servicio.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</h4>
               <p class="card-text">Acompañanos a vivir una gran aventura por el tolima</p>
               <a 
-                class="card-link"
+                class="card-link btn btn-danger btn-sm"
                 [routerLink]="['/inscripcion', servicio.codigo_servicio ]"
               >
-                Comprar <i class="bi-chevron-right small ms-1"></i></a>
+                Comprar <i class="bi-chevron-right small ms-1"></i>
+              </a>
             </div>
           </div>
           <div class="col-5 bg-img-start h-100 px-0">

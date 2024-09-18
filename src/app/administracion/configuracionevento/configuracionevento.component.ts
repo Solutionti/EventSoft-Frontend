@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from "../menu/menu.component";
+import { AdministracionService } from '../services/administracion.service';
+import { CommonModule } from '@angular/common';
+import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.component";
 
 @Component({
   selector: 'app-configuracionevento',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [CommonModule, MenuadminComponent],
   templateUrl: './configuracionevento.component.html',
   styleUrl: './configuracionevento.component.css'
 })
 export class ConfiguracioneventoComponent implements OnInit {
 
-  constructor() {
-
+  constructor(
+    private administracionServices: AdministracionService
+  ) {
+    
   }
 
   ngOnInit(): void {
@@ -19,6 +23,11 @@ export class ConfiguracioneventoComponent implements OnInit {
     linkElement.rel = 'stylesheet';
     linkElement.href = 'assets/css/argon-dashboard.min.css';  // Ruta al archivo CSS alternativo
     document.head.appendChild(linkElement);
+
+    this.getServiciosInicio();
+    this.getUsuariosAdministrador();
+    this.codigosPromocionales();
+    this.getPatrocinios();
   }
 
   ngAfterViewInit(): void {
@@ -27,6 +36,44 @@ export class ConfiguracioneventoComponent implements OnInit {
     script.src = 'assets/js/argon-dashboard.min.js'; // Ruta del archivo JS
     script.async = true;
     document.body.appendChild(script);
+  }
+
+  servicios: any [] = [];
+  getServiciosInicio() {
+    this.administracionServices
+        .getServiciosInicio()
+        .subscribe((response: any ) => {
+          this.servicios = response;
+        })
+  }
+
+  usuarios: any [] = [];
+  getUsuariosAdministrador() {
+     this.administracionServices
+        .getUsuariosAdministrador()
+        .subscribe((response: any ) => {
+          
+          this.usuarios = response;
+        })
+  }
+
+  codigos: any [] = [];
+  codigosPromocionales() {
+    this.administracionServices
+        .codigosPromocionales()
+        .subscribe((response: any ) => {
+          this.codigos = response;
+    })
+  }
+
+  patrocinios: any [] = [];
+  getPatrocinios() {
+    this.administracionServices
+        .getPatrocinios()
+        .subscribe((response: any ) => {
+          console.log(response);
+          this.patrocinios = response;
+    })
   }
 
 }

@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from "../menu/menu.component";
-
+import { AdministracionService } from '../services/administracion.service';
+import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.component";
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [CommonModule, TableModule, MenuadminComponent],
   templateUrl: './pedidos.component.html',
   styleUrl: './pedidos.component.css'
 })
 export class PedidosComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private administracionServices: AdministracionService
+  ) {
 
   }
 
@@ -19,6 +23,8 @@ export class PedidosComponent implements OnInit {
     linkElement.rel = 'stylesheet';
     linkElement.href = 'assets/css/argon-dashboard.min.css';  // Ruta al archivo CSS alternativo
     document.head.appendChild(linkElement);
+
+    this.getInscripciones();
   }
 
   ngAfterViewInit(): void {
@@ -29,4 +35,17 @@ export class PedidosComponent implements OnInit {
     document.body.appendChild(script);
   }
 
+  inscripciones: any[] = [];
+  getInscripciones() {
+    this.administracionServices
+        .getInscripciones()
+        .subscribe((response: any ) => {
+          console.log(response);
+          this.inscripciones  = response;
+        })
+  }
+
+  getDetalleInscripciones() {
+
+  }
 }

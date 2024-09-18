@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { IniciarsesionService } from '../services/iniciarsesion.service';
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -16,7 +17,9 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class IniciarsesionComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private iniciarsesionServices: IniciarsesionService
+  ) {
 
   }
 
@@ -47,5 +50,12 @@ export class IniciarsesionComponent implements OnInit {
     setTimeout(() => {
       clearInterval(intervalId2);
     }, 4000); // Detiene la ejecución después de 3 segundos
+  }
+
+  iniciarSesion() {
+    let correo = this.iniciarSesionForm.get("correo_iniciar")?.value,
+        contrasena = this.iniciarSesionForm.get("contrasena_iniciar")?.value;
+
+    
   }
 }

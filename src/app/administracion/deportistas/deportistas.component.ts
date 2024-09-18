@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from "../menu/menu.component";
-
+import { AdministracionService } from '../services/administracion.service';
+import { CommonModule } from '@angular/common';
+import { TableModule } from 'primeng/table';
+import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.component";
 @Component({
   selector: 'app-deportistas',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [CommonModule, TableModule, MenuadminComponent],
   templateUrl: './deportistas.component.html',
   styleUrl: './deportistas.component.css'
 })
 export class DeportistasComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private administracionServices: AdministracionService
+  ) {
 
   }
 
@@ -19,6 +23,8 @@ export class DeportistasComponent implements OnInit {
     linkElement.rel = 'stylesheet';
     linkElement.href = 'assets/css/argon-dashboard.min.css';  // Ruta al archivo CSS alternativo
     document.head.appendChild(linkElement);
+
+    this.getUsuariosDeportistas();
   }
 
   ngAfterViewInit(): void {
@@ -27,6 +33,16 @@ export class DeportistasComponent implements OnInit {
     script.src = 'assets/js/argon-dashboard.min.js'; // Ruta del archivo JS
     script.async = true;
     document.body.appendChild(script);
+  }
+
+  deportistas: any[] = [];
+  getUsuariosDeportistas() {
+    this.administracionServices
+        .getUsuariosDeportistas()
+        .subscribe((response: any ) => {
+          console.log(response);
+          this.deportistas = response;
+        })
   }
 
 }

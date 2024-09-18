@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuComponent } from "../menu/menu.component";
+import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.component";
 
 @Component({
   selector: 'app-inscripciones',
   standalone: true,
-  imports: [MenuComponent],
+  imports: [MenuadminComponent],
   templateUrl: './inscripciones.component.html',
   styleUrl: './inscripciones.component.css'
 })
