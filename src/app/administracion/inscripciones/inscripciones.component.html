@@ -29,98 +29,112 @@
               </div>
             </div>
           </div>
-          <div class="row mt-3">
-            <div class="col-md-2">
-              <label>Codigo QR</label>
+          <form [formGroup]="inscripcionesForm">
+            <div class="row mt-3">
+              <div class="col-md-2">
+                <label>Codigo QR</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="codigoqr"
+                  >
+              </div>
+              <div class="col-md-2">
+                <label>Documento</label>
                 <input
-                  type="text"
-                  class="form-control form-control-sm"
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="documento"
                 >
+              </div>
+              <div class="col-md-2">
+                <label>Tipo Documento</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="tpdocumento"
+                  >
+              </div>
+              <div class="col-md-6">
+                <label>Nombre y Apellido</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="nombrecompleto"
+                  >
+              </div>
             </div>
-            <div class="col-md-2">
-              <label>Tipo Documento</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
+            <!--  -->
+            <div class="row mt-2">
+              <div class="col-md-2">
+                <label>Departamento</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="departamento"
+                  >
+              </div>
+              <div class="col-md-2">
+                <label>Ciudad</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="ciudad"
+                  >
+              </div>
+              <div class="col-md-2">
+                <label>Telefono</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="telefono"
+                  >
+              </div>
+              <div class="col-md-6">
+                <label>Direccion</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="direccion"
+                  >
+              </div>
             </div>
-            <div class="col-md-2">
-              <label>Documento</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
+            <!--  -->
+            <div class="row mt-2">
+              <div class="col-md-5">
+                <label>Correo Electronico</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="correo"
+                  >
+              </div>
+              <div class="col-md-2">
+                <label>RH</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="rh"
+                  >
+              </div>
+              <div class="col-md-3">
+                <label>Seguro medico</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="seguromedico"
+                  >
+              </div>
+              <div class="col-md-2">
+                <label>Fecha Nacimiento</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm"
+                    formControlName="fechanacimiento"
+                  >
+              </div>
             </div>
-            <div class="col-md-6">
-              <label>Nombre y Apellido</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-          </div>
-          <!--  -->
-          <div class="row mt-2">
-            <div class="col-md-2">
-              <label>Departamento</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-2">
-              <label>Ciudad</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-2">
-              <label>Telefono</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-6">
-              <label>Direccion</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-          </div>
-          <!--  -->
-          <div class="row mt-2">
-            <div class="col-md-5">
-              <label>Correo Electronico</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-2">
-              <label>RH</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-3">
-              <label>Seguro medico</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-            <div class="col-md-2">
-              <label>Fecha Nacimiento</label>
-                <input
-                  type="text"
-                  class="form-control form-control-sm"
-                >
-            </div>
-          </div>
+          </form>
         <div class="row mt-4">
           <div class="col-md-10">
             <div class="table-responsive">

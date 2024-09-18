@@ -82,13 +82,19 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-inscripciones>
                   <tr>
-                    <td class="text-xs text-uppercase">{{ '0000' + inscripciones.codigo_inscripcion }}</td>
+                    <td class="text-xs text-uppercase text-bold">{{ 'FTN0000' + inscripciones.codigo_inscripcion }}</td>
                     <td>
                       <a
-                        class="badge bg-success"
-                        
+                        class="badge bg-primary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#staticBackdrop"
                       >
-                        <i class="fas fa-check fa-xs text-white"></i>
+                        <i class="fas fa-shopping-cart fa-xs text-white"></i>
+                      </a>
+                      <a
+                        class="badge bg-success mx-2"
+                      >
+                        <i class="fas fa-check fa-xs text-white "></i>
                       </a>
                     </td>
                     <td>
@@ -125,15 +131,37 @@
     </div>
   </div>
   <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">DETALLE DEL PEDIDO</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <div class="row">
+          <div class="col-md-12">
+            <table
+              class="table table-striped table-hover"
+            >
+              <thead>
+                <tr class="bg-dark">
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Codigo inscripcion</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Producto</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Categoria</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Jersy</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Kit</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">Precio</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">cantidad</th>
+                  <th class="text-uppercase text-white text-xs bg-dark font-weight-bolder opacity-12">¿Obsequio?</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
