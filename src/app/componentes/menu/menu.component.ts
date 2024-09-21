@@ -24,6 +24,7 @@ export class MenuComponent implements OnInit {
   }
 
   cantidadElementos: number  = 0;
+  
   contarElementos() {
     const arrayString: any  = localStorage.getItem('carrito');
     

@@ -88,6 +88,7 @@
                         class="badge bg-primary"
                         data-bs-toggle="modal"
                         data-bs-target="#staticBackdrop"
+                        (click)="getDetalleInscripciones(inscripciones.codigo_inscripcion)"
                       >
                         <i class="fas fa-shopping-cart fa-xs text-white"></i>
                       </a>
@@ -115,8 +116,12 @@
                     <td class="text-xs text-uppercase">{{ inscripciones.total }}</td>
                     <td class="text-xs text-uppercase">{{ inscripciones.fecha }}</td>
                     <td class="text-xs text-uppercase">{{ inscripciones.hora }}</td>
-                    <td class="text-xs text-uppercase">{{ inscripciones.codigo_promocional }}</td>
-                    <td class="text-xs text-uppercase">{{ inscripciones.estado }}</td>
+                    <td class="text-xs text-uppercase">
+                      <span class="badge bg-primary">{{ inscripciones.codigo_promocional }}</span>
+                    </td>
+                    <td class="text-xs text-uppercase">
+                      <span class="badge bg-danger">{{ inscripciones.estado }}</span>
+                    </td>
                   </tr>
                 </ng-template>
                </p-table>
@@ -157,7 +162,16 @@
                 </tr>
               </thead>
               <tbody>
-                
+                <tr *ngFor="let inscripcion of detalleinscripcion">
+                  <td class="text-xs text-uppercase">FTN0000{{ inscripcion.codigo_inscripcion }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.nombre }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.categoria }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.jersy }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.kit }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.cantidad }}</td>
+                  <td class="text-xs text-uppercase">{{ inscripcion.codigo_promocional }}</td>
+                </tr>
               </tbody>
             </table>
           </div>

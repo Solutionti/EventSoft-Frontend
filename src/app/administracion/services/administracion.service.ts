@@ -49,6 +49,13 @@ export class AdministracionService {
   getDetalleInscripciones(codigo: any )  {
     const url = "http://localhost:8000/api/getDetalleInscripciones";
     let params = new HttpParams().set("codigo", codigo);
-    return this.http.get(url);
+    return this.http.get(url, { params });
+  }
+
+  getDatosInscripcion(documento: any ) {
+    const url = "http://localhost:8000/api/getDatosInscripcion";
+    let params = new HttpParams().set("documento", documento);
+
+    return this.http.get(url, { params });
   }
 }

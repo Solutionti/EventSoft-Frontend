@@ -37,9 +37,9 @@ export class InicioComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // Crear un nuevo elemento script
+  
     const script = document.createElement('script');
-    script.src = 'assets/js/pagina.js'; // Ruta del archivo JS
+    script.src = 'assets/js/pagina.js'; 
     script.async = true;
     document.body.appendChild(script);
   }
@@ -52,19 +52,19 @@ export class InicioComponent implements OnInit {
   cargaPagina() {
     const intervalId = setInterval(() => {
       this.spinner = false;
-    }, 100); // Ejecuta la función cada 100 milisegundos
+    }, 100);
 
     setTimeout(() => {
       clearInterval(intervalId);
-    }, 3000); // Detiene la ejecución después de 3 segundos
+    }, 3000);
 
     const intervalId2 = setInterval(() => {
       this.spinner = true;
-    }, 3000); // Ejecuta la función cada 100 milisegundos
+    }, 3000);
 
     setTimeout(() => {
       clearInterval(intervalId2);
-    }, 4000); // Detiene la ejecución después de 3 segundos
+    }, 4000);
   }
 
   // enviarMensajeWhatsapp() {
@@ -81,7 +81,6 @@ export class InicioComponent implements OnInit {
     this.paginaServices
         .getServiciosInicio()
         .subscribe((response: any ) => {
-          console.log(response);
           this.servicios = response;
         });
   }

@@ -5,6 +5,7 @@
 
 <div class="min-height-300 bg-default position-absolute w-100"></div>
 <app-menuadmin></app-menuadmin>
+<p-toast position="top-right"/>
 <main class="main-content position-relative border-radius-lg">
   <div class="container-fluid py-6">
     <div class="row ">
@@ -35,33 +36,45 @@
                 <label>Codigo QR</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="codigoqr"
                   >
               </div>
               <div class="col-md-2">
                 <label>Documento</label>
                 <input
-                type="text"
-                class="form-control form-control-sm"
-                formControlName="documento"
+                  type="text"
+                  class="form-control form-control-sm text-uppercase"
+                  formControlName="documento"
+                  (blur)="getDatosInscripcion()"
                 >
               </div>
               <div class="col-md-2">
                 <label>Tipo Documento</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="tpdocumento"
                   >
               </div>
-              <div class="col-md-6">
+              <div class="col-md-4">
                 <label>Nombre y Apellido</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="nombrecompleto"
                   >
+              </div>
+              <div class="col-md-2">
+                <label>Factura</label>
+                <div class="input-group input-group-sm">
+                  <span class="input-group-text " id="basic-addon1">FTN0000</span>
+                  <input
+                    type="text"
+                    class="form-control form-control-sm text-uppercase "
+                    formControlName="factura"
+                  >
+                </div>
               </div>
             </div>
             <!--  -->
@@ -70,7 +83,7 @@
                 <label>Departamento</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="departamento"
                   >
               </div>
@@ -78,7 +91,7 @@
                 <label>Ciudad</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="ciudad"
                   >
               </div>
@@ -86,7 +99,7 @@
                 <label>Telefono</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="telefono"
                   >
               </div>
@@ -94,7 +107,7 @@
                 <label>Direccion</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="direccion"
                   >
               </div>
@@ -105,7 +118,7 @@
                 <label>Correo Electronico</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="correo"
                   >
               </div>
@@ -113,7 +126,7 @@
                 <label>RH</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="rh"
                   >
               </div>
@@ -121,7 +134,7 @@
                 <label>Seguro medico</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="seguromedico"
                   >
               </div>
@@ -129,21 +142,28 @@
                 <label>Fecha Nacimiento</label>
                   <input
                     type="text"
-                    class="form-control form-control-sm"
+                    class="form-control form-control-sm text-uppercase"
                     formControlName="fechanacimiento"
                   >
               </div>
             </div>
           </form>
+          <div class="row mt-4">
+            <div class="col-md-12">
+              <h5>Total: {{ total  }}</h5>
+            </div>
+          </div>
+          
         <div class="row mt-4">
           <div class="col-md-10">
             <div class="table-responsive">
-              <table class="table table-striped table-hover">
+              <table class="table table-striped">
                 <thead class="bg-dark">
                   <tr>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12"></th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Inscripcion</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Estado</th>
+                    <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Precio</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Producto</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Categoria</th>
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">Jersy</th>
@@ -152,7 +172,24 @@
                     <th class="text-uppercase text-white text-xs font-weight-bolder opacity-12">¿Obsequio? </th>
                   </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                  <tr *ngFor="let inscripcion of inscripciones">
+                    <td></td>
+                    <td>FTN0000{{ inscripcion.codigo_inscripcion }}</td>
+                    <td>
+                      <span class="badge bg-success ">Activo</span>
+                    </td>
+                    <td class="text-uppercase">{{ inscripcion.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                    <td class="text-uppercase text-danger">{{ inscripcion.nombre }}</td>
+                    <td class="text-uppercase">{{ inscripcion.categoria }}</td>
+                    <td class="text-uppercase text-success">{{ inscripcion.jersy }}</td>
+                    <td class="text-uppercase">{{ inscripcion.kit }}</td>
+                    <td class="text-uppercase">{{ inscripcion.cantidad }}</td>
+                    <td class="text-uppercase">
+                      <span class="badge bg-danger">{{ inscripcion.codigo_promocional }}</span>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
               <br>
               <br>

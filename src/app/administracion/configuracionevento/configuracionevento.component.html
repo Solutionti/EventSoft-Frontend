@@ -23,21 +23,29 @@
                 <p class="mb-0 h6 text-uppercase ">Configuracion del evento</p>
                 <button
                   class="btn btn-primary text-white font-weight-bold btn-xs ms-auto"
+                  data-bs-toggle="modal"
+                  data-bs-target="#crearusuarioModal"
                 > 
                   <i class="fas fa-plus"></i> Crear Usuarios
                 </button>
                 <button
                   class="btn btn-danger text-white font-weight-bold btn-xs mx-2"
-                > 
+                  data-bs-toggle="modal"
+                  data-bs-target="#crearregalomodal"
+                  > 
                   <i class="fas fa-plus"></i> Crear Regalo
                 </button>
                 <button
                   class="btn btn-success text-white font-weight-bold btn-xs mx-2"
-                > 
+                  data-bs-toggle="modal"
+                  data-bs-target="#crearserviciomodal"
+                  > 
                   <i class="fas fa-plus"></i> Crear servicio
                 </button>
                 <button
                   class="btn btn-info text-white font-weight-bold btn-xs mx-2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#crearpatrociniomodal"
                 > 
                   <i class="fas fa-plus"></i> Crear Patrocinio
                 </button>
@@ -176,5 +184,184 @@
       </div>
     </div>
   </div>
-
+  <!-- CREAR USUARIOS -->
+  <div class="modal fade" id="crearusuarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="crearusuarioModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="crearusuarioModalLabel">CREACION DE USUARIOS ADMINISTRATIVOS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Documento</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-8">
+                <label>Nombre usuario</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-4">
+                <label>Telefono</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-8">
+                <label >Correo electronico</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label>Usuario</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-6">
+                <label>Contraseña</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CREAR REGALO -->
+  <div class="modal fade" id="crearregalomodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="crearregalomodalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="crearregalomodalLabel">CREAR CODIGO PROMOCIONAL</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="row">
+              <div class="col-md-12">
+                <label>Documento deportista</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label >Codigo</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-6">
+                <label>Total a obsequiar</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label>Estado</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CREAR SERVICIO -->
+  <div class="modal fade" id="crearserviciomodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="crearregalomodalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="crearregalomodalLabel">CREAR SERVICIOS TIENDA</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Codigo</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-8">
+                <label>Nombre servicio</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-6">
+                <label >Precio</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-6">
+                <label>Estado</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label>Imagen</label>
+                <input type="file" class="form-control form-control-sm">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- CREAR PATROCINIO -->
+  <div class="modal fade" id="crearpatrociniomodal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="crearregalomodalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="crearregalomodalLabel">CREAR PATROCINADORES</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="">
+            <div class="row">
+              <div class="col-md-4">
+                <label>Codigo</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-8">
+                <label>Nombre empresa</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-8">
+                <label>Logo empresa</label>
+                <input type="file" class="form-control form-control-sm">
+              </div>
+              <div class="col-md-4">
+                <label >Valor aporte</label>
+                <input type="text" class="form-control form-control-sm">
+              </div>
+            </div>
+            <div class="row mt-3">
+              <div class="col-md-12">
+                <label>Descripcion</label>
+                <textarea class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 

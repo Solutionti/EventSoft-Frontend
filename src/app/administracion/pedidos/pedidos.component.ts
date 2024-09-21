@@ -45,7 +45,13 @@ export class PedidosComponent implements OnInit {
         })
   }
 
-  getDetalleInscripciones() {
-
+  detalleinscripcion: any[] = [];
+  getDetalleInscripciones(codigo: any ) {
+    this.administracionServices
+        .getDetalleInscripciones(codigo)
+        .subscribe((response: any ) => {
+          console.log(response);
+          this.detalleinscripcion = response;
+        });
   }
 }
