@@ -5,11 +5,12 @@ import { CommonModule } from '@angular/common';
 import { AdministracionService } from '../services/administracion.service';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-inscripciones',
   standalone: true,
-  imports: [MenuadminComponent, ReactiveFormsModule, CommonModule, ToastModule],
+  imports: [MenuadminComponent, ReactiveFormsModule, CommonModule, ToastModule, ConfirmDialogModule],
   templateUrl: './inscripciones.component.html',
   styleUrl: './inscripciones.component.css',
   providers: [ConfirmationService,MessageService]
@@ -52,6 +53,7 @@ export class InscripcionesComponent implements OnInit {
     telefono: new FormControl({value: '', disabled: true}),
     direccion: new FormControl({value: '', disabled: true}),
     correo: new FormControl({value: '', disabled: true}),
+    estado: new FormControl({value: '', disabled: true}),
     rh: new FormControl({value: '', disabled: true}),
     seguromedico: new FormControl({value: '', disabled: true}),
     fechanacimiento: new FormControl({value: '', disabled: true}),
@@ -59,6 +61,7 @@ export class InscripcionesComponent implements OnInit {
   });
 
   inscripciones: any[] = [];
+  estado = "";
   getDatosInscripcion() {
     let documento = this.inscripcionesForm.get("documento")?.value;
 
@@ -82,32 +85,65 @@ export class InscripcionesComponent implements OnInit {
         .subscribe((response: any ) => {
           if(response.status == 200) {
             this.inscripcionesForm.patchValue({
-              tpdocumento: response.data.tipo_documento,
-              nombrecompleto: response.data.nombre + '' + response.data.apellido,
-              departamento: response.data.departamento,
-              ciudad: response.data.ciudad,
-              telefono: response.data.telefono,
-              direccion: response.data.direccion,
-              correo: response.data.correo_electronico,
-              rh: response.data.rh,
-              seguromedico: response.data.seguro_medico,
-              fechanacimiento: response.data.fecha_nacimiento,
-              factura: '  ' + response.data.codigo_inscripcion,
+              documento: response.data[0].documento,
+              tpdocumento: response.data[0].tipo_documento,
+              nombrecompleto: response.data[0].nombre + '' + response.data[0].apellido,
+              departamento: response.data[0].departamento,
+              ciudad: response.data[0].ciudad,
+              telefono: response.data[0].telefono,
+              direccion: response.data[0].direccion,
+              correo: response.data[0].correo_electronico,
+              estado: response.data[0].estado,
+              rh: response.data[0].rh,
+              seguromedico: response.data[0].seguro_medico,
+              fechanacimiento: response.data[0].fecha_nacimiento,
+              factura: '  ' + response.data[0].codigo_inscripcion,
             });
   
             this.administracionServices
-                .getDetalleInscripciones(response.data.codigo_inscripcion)
+                .getDetalleInscripciones(response.data[0].codigo_inscripcion)
                 .subscribe((response: any ) => {
                   this.inscripciones = response;
                 });
-            this.total = response.data.total;
-
+            this.total = response.data[0].total;
+            if(response.data[0].estado == "Aceptado") {
+              this.estado = "Pendiente";
+            }
+            else {
+              this.estado = "Entregado";
+            }
             this.showSuccess(response.message)
           }
           else {
             this.showError(response.message)
           }
         });
+  }
+
+  EntregaKits() {
+    let tpdocumento = this.inscripcionesForm.get("tpdocumento")?.value,
+        documento= this.inscripcionesForm.get("documento")?.value;
+
+    this.confirmationService.confirm({
+      header: 'Estas seguro ?',
+      message: 'Desea terminar la inscripcion del deportista?',
+      accept: () => {
+        this.administracionServices
+            .entregaKits(tpdocumento, documento)
+            .subscribe((response: any ) => {
+              if(response.status == 200) {
+                this.showSuccess(response.message);
+                this.getDatosInscripcion();
+              }
+              else {
+                this.showError(response.message);
+              }
+          });
+        },
+      reject: () => {
+              // si es incorrecto
+      }
+    });
   }
 
   showSuccess(message: string) {

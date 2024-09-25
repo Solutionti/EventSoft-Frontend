@@ -5,6 +5,7 @@
 
 <div class="min-height-300 bg-default position-absolute w-100"></div>
 <app-menuadmin></app-menuadmin>
+<p-toast position="top-right"/>
 <main class="main-content position-relative border-radius-lg">
   <div class="container-fluid py-6">
     <div class="row ">
@@ -83,7 +84,9 @@
                     <td class="text-xs text-uppercase">{{ usuario.telefono }}</td>
                     <td class="text-xs ">{{ usuario.correo_electronico }}</td>
                     <td class="text-xs text-uppercase">{{ usuario.rol_usuario }}</td>
-                    <td class="text-xs text-uppercase">{{ usuario.estado }}</td>
+                    <td class="text-xs text-uppercase">
+                      <span class="badge bg-success">{{ usuario.estado }}</span>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -108,9 +111,11 @@
                 <tr *ngFor="let codigo of codigos">
                   <td></td>
                   <td class="text-xs text-uppercase">{{ codigo.documento}}</td>
-                  <td class="text-xs text-uppercase">{{ codigo.codigo_promocional}}</td>
+                  <td class="text-xs text-uppercase text-danger">{{ codigo.codigo_promocional}}</td>
                   <td class="text-xs text-uppercase">{{ codigo.precio}}</td>
-                  <td class="text-xs text-uppercase">{{ codigo.estado}}</td>
+                  <td class="text-xs text-uppercase">
+                    <span class="badge bg-success">{{ codigo.estado}}</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -174,7 +179,10 @@
                   <td class="text-xs text-uppercase">{{ servicio.nombre }}</td>
                   <td class="text-xs text-uppercase">{{ servicio.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
                   <td class="text-xs text-uppercase">{{ servicio.vistas }}</td>
-                  <td class="text-xs text-uppercase">{{ servicio.estado }}</td>
+                  <td class="text-xs text-uppercase">
+                    <span class="badge bg-success">{{ servicio.estado }}</span>
+                    
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -242,34 +250,50 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form [formGroup]="regaloForm">
             <div class="row">
               <div class="col-md-12">
-                <label>Documento deportista</label>
-                <input type="text" class="form-control form-control-sm">
+                <label>Documento deportista *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="documento_deportista"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-6">
-                <label >Codigo</label>
-                <input type="text" class="form-control form-control-sm">
+                <label >Codigo *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="codigo_deportista"
+                >
               </div>
               <div class="col-md-6">
-                <label>Total a obsequiar</label>
-                <input type="text" class="form-control form-control-sm">
+                <label>Total a obsequiar *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="total_deportista"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-12">
-                <label>Estado</label>
-                <input type="text" class="form-control form-control-sm">
+                <label>Estado *</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="estado_deportista"
+                >
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button type="button" class="btn btn-primary" [disabled]="regaloForm.invalid" (click)="crearRegalo()">Aceptar</button>
         </div>
       </div>
     </div>
@@ -283,38 +307,66 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form [formGroup]="servicioForm">
             <div class="row">
               <div class="col-md-4">
                 <label>Codigo</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="codigo_servicio"
+                >
               </div>
               <div class="col-md-8">
                 <label>Nombre servicio</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="nombre_servicio"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-6">
                 <label >Precio</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="precio_servicio"
+                >
               </div>
               <div class="col-md-6">
                 <label>Estado</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="estado_servicio"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-12">
                 <label>Imagen</label>
-                <input type="file" class="form-control form-control-sm">
+                <input
+                  type="file"
+                  class="form-control form-control-sm"
+                  formControlName="imagen_servicio"
+                  (change)="imageUpload($event)"
+                >
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="servicioForm.invalid"
+            (click)="crearServicio()"
+          >
+            Aceptar
+          </button>
         </div>
       </div>
     </div>
@@ -328,38 +380,66 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form [formGroup]="patrocinioForm">
             <div class="row">
               <div class="col-md-4">
                 <label>Codigo</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="codigo_patrocinio"
+                >
               </div>
               <div class="col-md-8">
                 <label>Nombre empresa</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="empresa_patrocinio"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-8">
                 <label>Logo empresa</label>
-                <input type="file" class="form-control form-control-sm">
+                <input
+                  type="file"
+                  class="form-control form-control-sm"
+                  formControlName="logo_patrocinio"
+                  (change)="imageUpload2($event)"
+                >
               </div>
               <div class="col-md-4">
                 <label >Valor aporte</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="valor_patrocinio"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-12">
                 <label>Descripcion</label>
-                <textarea class="form-control" rows="5"></textarea>
+                <textarea
+                  class="form-control"
+                  rows="5"
+                  formControlName="descripcion_patrocinio"
+                ></textarea>
               </div>
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            [disabled]="patrocinioForm.invalid"
+            (click)="crearPatrocinio()"
+          >
+            Aceptar
+          </button>
         </div>
       </div>
     </div>

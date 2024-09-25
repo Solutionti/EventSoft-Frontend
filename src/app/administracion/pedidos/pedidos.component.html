@@ -2,7 +2,7 @@
 <!-- * * * * * * * * * * * JERSON GALVEZ ENSUNCHO * * * * * * * * * * * -->
 <!-- ******* * * * * * * * PROYECTO INVENTSOFT * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-
+<p-toast position="top-right"/>
 <div class="min-height-300 bg-default position-absolute w-100"></div>
 <app-menuadmin></app-menuadmin>
 <main class="main-content position-relative border-radius-lg">
@@ -93,9 +93,17 @@
                         <i class="fas fa-shopping-cart fa-xs text-white"></i>
                       </a>
                       <a
-                        class="badge bg-success mx-2"
+                        class="badge bg-danger mx-2"
+                        (click)="cambiarEstadoPedido(inscripciones.documento,inscripciones.tpdocumento)"
                       >
                         <i class="fas fa-check fa-xs text-white "></i>
+                      </a>
+                      <a
+                        class="badge bg-success mx-2"
+                        target="_blank"
+                        [href]="'https://wa.me/' + inscripciones.telefono " 
+                      >
+                        <i class="fab fa-whatsapp  text-white "></i>
                       </a>
                     </td>
                     <td>
@@ -120,7 +128,10 @@
                       <span class="badge bg-primary">{{ inscripciones.codigo_promocional }}</span>
                     </td>
                     <td class="text-xs text-uppercase">
-                      <span class="badge bg-danger">{{ inscripciones.estado }}</span>
+                      <span class="badge bg-success" *ngIf="inscripciones.estado == 'Aceptado'">{{ inscripciones.estado }}</span>
+                      <span class="badge bg-danger" *ngIf="inscripciones.estado == 'Cancelado'">{{ inscripciones.estado }}</span>
+                      <span class="badge bg-primary" *ngIf="inscripciones.estado == 'Pendiente'">{{ inscripciones.estado }}</span>
+                      <span class="badge bg-black" *ngIf="inscripciones.estado == 'Entregado'">{{ inscripciones.estado }}</span>
                     </td>
                   </tr>
                 </ng-template>
@@ -179,10 +190,22 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary">Aceptar</button>
       </div>
     </div>
   </div>
 </div>
-
-
+<!--  -->
+<div class="card flex justify-content-center">
+  <p-toast />
+  <p-confirmDialog
+    rejectLabel="No"
+    acceptLabel="Si"
+  >
+      <ng-template pTemplate="message" let-message>
+          <div class="flex text-center flex-column align-items-center w-full gap-3 border-bottom-1 surface-border">
+              <i class="fas fa-exclamation-circle text-6xl text-primary"></i>
+              <p>{{ message.message }}</p>
+          </div>
+      </ng-template>
+  </p-confirmDialog>
+</div>

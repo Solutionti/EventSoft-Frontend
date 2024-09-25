@@ -58,4 +58,46 @@ export class AdministracionService {
 
     return this.http.get(url, { params });
   }
+
+  crearRegalo(datos: any ) {
+    const url = "http://localhost:8000/api/crearRegalo";
+
+    return this.http.post(url, {
+      codigo_promocional: datos[0].codigo_promocional,
+      precio: datos[0].precio,
+      estado: datos[0].estado,
+      documento: datos[0].documento,
+    });
+  }
+
+  crearServicio(formdata: FormData) {
+    const url = "http://localhost:8000/api/crearServicio";
+
+    return this.http.post(url, formdata);
+  }
+
+  crearPatrocinio(formdata: FormData) {
+    const url = "http://localhost:8000/api/crearPatrocinio";
+
+    return this.http.post(url, formdata);
+  }
+
+  entregaKits(tpdocumento: any, documento: any) {
+    const url = "http://localhost:8000/api/EntregaKits";
+
+    return this.http.post(url, {
+      tpdocumento: tpdocumento,
+      documento: documento
+    });
+  }
+
+  cambiarEstadoPedido(tpdocumento: any, documento: any, estado: any) {
+    const url = "http://localhost:8000/api/cambiarEstadoPedido";
+
+    return this.http.post(url, {
+      tpdocumento: tpdocumento,
+      documento: documento,
+      estado: estado
+    });
+  }
 }
