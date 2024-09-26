@@ -53,6 +53,14 @@ export class ConfiguracioneventoComponent implements OnInit {
     document.body.appendChild(script);
   }
 
+  usuariosForm = new FormGroup({
+    documento_usuario: new FormControl('', Validators.required),
+    nombre_usuario: new FormControl('', Validators.required),
+    apellido_usuario: new FormControl('', Validators.required),
+    telefono_usuario: new FormControl('', Validators.required),
+    correo_usuario: new FormControl('', Validators.required)
+  });
+
   regaloForm = new FormGroup({
     documento_deportista: new FormControl('', Validators.required),
     codigo_deportista: new FormControl({value: '', disabled: true}, Validators.required),
@@ -271,6 +279,37 @@ export class ConfiguracioneventoComponent implements OnInit {
     catch(e) {
 
     }
+  }
+
+  crearUsuarios() {
+    let documento = this.usuariosForm.get("documento_usuario")?.value,
+    nombre = this.usuariosForm.get("nombre_usuario")?.value,
+    apellido = this.usuariosForm.get("apellido_usuario")?.value,
+    telefono = this.usuariosForm.get("telefono_usuario")?.value,
+    correo = this.usuariosForm.get("correo_usuario")?.value;
+
+    let datos: any = [
+      {
+        documento: documento, 
+        nombre: nombre, 
+        apellido: apellido, 
+        telefono: telefono, 
+        correo: correo
+      }
+    ];
+
+    this.administracionServices
+        .crearUsuarios(datos)
+        .subscribe((response: any ) => {
+          if(response.status == 200) {
+            this.showSuccess(response.message);
+            this.getUsuariosAdministrador();
+            this.usuariosForm.reset();
+          }
+          else {
+            this.showError(response.message);
+          }
+        });
   }
 
   showSuccess(message: string) {

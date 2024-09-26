@@ -10,12 +10,12 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-inicio',
   standalone: true,
   imports: [
+    CommonModule,
+    ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
     MenuComponent,
     FooterComponent,
-    CommonModule,
-    ReactiveFormsModule,
   ],
   templateUrl: './inicio.component.html',
   styleUrl: './inicio.component.css'

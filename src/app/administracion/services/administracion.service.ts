@@ -101,5 +101,15 @@ export class AdministracionService {
     });
   }
 
-  
+  crearUsuarios(datos: any ) {
+    const url = "http://localhost:8000/api/crearUsuario";
+
+    return this.http.post(url, {
+      documento: datos[0].documento,
+      nombre: datos[0].nombre,
+      apellido: datos[0].apellido,
+      telefono: datos[0].telefono,
+      correo: datos[0].correo,
+    });
+  }
 }

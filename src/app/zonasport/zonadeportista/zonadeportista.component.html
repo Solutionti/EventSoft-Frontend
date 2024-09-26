@@ -185,9 +185,8 @@
                             <th>Total</th>
                           </tr>
                         </thead>
-                  
                         <tbody>
-                            <tr>
+                            <tr *ngFor="let pedido of getpedidos">
                               <td>
                                   <a class="text-body" data-bs-toggle="tooltip" data-bs-placement="top" title="Locked">
                                     <i class="fas fa-lock-open"></i>
@@ -197,7 +196,7 @@
                               <div class="d-flex align-items-center">
                                 <div class="flex-shrink-0">
                                     <span class="avatar avatar-sm avatar-primary avatar-circle">
-                                        <span class="avatar-initials">GF</span>
+                                        <span class="avatar-initials">CM</span>
                                       </span>
                                 </div>
                   
@@ -213,18 +212,18 @@
                                       >
                                     </h6>
                                   </a>
-                                  <small class="d-block">#2373</small>
+                                  <small class="d-block">#FA0000{{ pedido.codigo_inscripcion }}</small>
                                 </div>
                               </div>
                             </td>
                             <td>
-                                01-01-2024
+                              {{ pedido.fecha }}
                             </td>
                             <td>
-                              Procesando
+                              {{ pedido.estado }}
                             </td>
                             <td>
-                              $0 para 1 elemento
+                              ${{ pedido.total}} para 1 elemento
                             </td>
                             
                           </tr>

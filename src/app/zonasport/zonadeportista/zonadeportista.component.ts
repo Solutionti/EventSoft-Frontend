@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FooterComponent } from "../../componentes/footer/footer.component";
+import { ZonasportService } from '../services/zonasport.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-zonadeportista',
@@ -8,7 +11,9 @@ import { FooterComponent } from "../../componentes/footer/footer.component";
   imports: [
     RouterOutlet,
     RouterLink,
-    FooterComponent
+    FooterComponent,
+    ReactiveFormsModule,
+    CommonModule
 ],
   templateUrl: './zonadeportista.component.html',
   styleUrl: './zonadeportista.component.css'
@@ -16,13 +21,15 @@ import { FooterComponent } from "../../componentes/footer/footer.component";
 export class ZonadeportistaComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private zonasportServices: ZonasportService
   ) {
 
   }
 
   ngOnInit(): void {
-    this.cargaPagina()
+    this.cargaPagina();
+    this.getPedidoDeportista();
   }
 
   datospersonales = true;
@@ -61,5 +68,14 @@ export class ZonadeportistaComponent implements OnInit {
   cerrarSesion() {
     localStorage.clear();
     window.location.href = 'http://localhost:4200/';
+  }
+
+  getpedidos: any [] = [];
+  getPedidoDeportista() {
+    this.zonasportServices
+        .getPedidoDeportista()
+        .subscribe((response: any ) => {
+          this.getpedidos = response;
+        })
   }
 }

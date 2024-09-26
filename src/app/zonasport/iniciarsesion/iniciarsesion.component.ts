@@ -34,7 +34,10 @@ export class IniciarsesionComponent implements OnInit {
   }
 
   spinner = true;
-
+  typepassword = 'password';
+  ocultarhidden = true;
+  verhidden = false
+  
   iniciarSesionForm = new FormGroup({
     correo_iniciar: new FormControl('', Validators.required),
     contrasena_iniciar: new FormControl('', Validators.required),
@@ -94,6 +97,18 @@ export class IniciarsesionComponent implements OnInit {
             this.showError(message);
           }
         });
+  }
+
+  verContrasena() {
+    this.typepassword = 'text';
+    this.verhidden = true;
+    this.ocultarhidden = false;
+  }
+
+  ocultarContrasena() {
+    this.typepassword = 'password';
+    this.verhidden = false;
+    this.ocultarhidden = true;
   }
 
   showError(message: string) {

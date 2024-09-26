@@ -26,7 +26,7 @@
               <blockquote class="blockquote blockquote-light">“ Hemos creado un espacio para ti deportista para que puedas estar al dia de nuestros pasos bienvenido. ”</blockquote>
               <figcaption class="blockquote-footer blockquote-light">
                 <div class="mb-3">
-                  <img class="avatar avatar-circle" src="https://htmlstream.com/preview/front-v4.2/html/assets/img/160x160/img9.jpg" alt="Image Description">
+                  <img class="avatar avatar-circle" src="https://www.sport.es/bicio/wp-content/uploads/2022/05/requisitos-buen-ciclista.jpg" alt="Image Description">
                 </div>
 
                 Gran Fondo Ciudad Musical
@@ -49,23 +49,36 @@
                 <input
                   type="email"
                   class="form-control form-control-lg"
+                  placeholder="Correo electronico"
                   formControlName="correo_iniciar"
                 >
               </div>
               <div class="mb-4">
                 <div class="d-flex justify-content-between align-items-center">
                   <label class="form-label" for="signupModalFormLoginPassword">Contraseña</label>
-                  <a class="form-label-link" href="#">Olvido su contraseña?</a>
+                  <!-- <a class="form-label-link" href="#">Olvido su contraseña?</a> -->
                 </div>
                 <div class="input-group input-group-merge" data-hs-validation-validate-class>
                   <input
-                    type="password"
+                    [type]="typepassword"
                     class="js-toggle-password form-control form-control-lg"
+                    placeholder="Contraseña"
                     formControlName="contrasena_iniciar"
                   >
-                  <a id="changePassTarget" class="input-group-append input-group-text" href="javascript:;">
-                    <i id="changePassIcon" class="fas fa-eye-slash"></i>
-                  </a>
+                  <a
+          class="input-group-append input-group-text"
+          (click)="verContrasena()"
+          [hidden]="verhidden"
+        >
+          <i id="changePassIcon" class="fas fa-eye"></i>
+        </a>
+        <a
+          class="input-group-append input-group-text"
+          (click)="ocultarContrasena()"
+          [hidden]="ocultarhidden"
+        >
+          <i id="changePassIcon" class="fas fa-eye-slash"></i>
+        </a>
                 </div>
               </div>
               <div class="d-grid mb-3">

@@ -279,42 +279,55 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="">
+          <form [formGroup]="usuariosForm">
             <div class="row">
               <div class="col-md-4">
                 <label>Documento</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="documento_usuario"
+                >
               </div>
-              <div class="col-md-8">
-                <label>Nombre usuario</label>
-                <input type="text" class="form-control form-control-sm">
+              <div class="col-md-4">
+                <label>Nombre</label>
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="nombre_usuario"
+                >
+              </div>
+              <div class="col-md-4">
+                <label>Apellido</label>
+                <input 
+                  type="text"
+                  class="form-control form-control-sm"
+                  formControlName="apellido_usuario"
+                >
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-md-4">
                 <label>Telefono</label>
-                <input type="text" class="form-control form-control-sm">
+                <input
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="telefono_usuario">
               </div>
               <div class="col-md-8">
                 <label >Correo electronico</label>
-                <input type="text" class="form-control form-control-sm">
+                <input 
+                type="text"
+                class="form-control form-control-sm"
+                formControlName="correo_usuario">
               </div>
             </div>
-            <div class="row mt-3">
-              <div class="col-md-6">
-                <label>Usuario</label>
-                <input type="text" class="form-control form-control-sm">
-              </div>
-              <div class="col-md-6">
-                <label>Contraseña</label>
-                <input type="text" class="form-control form-control-sm">
-              </div>
-            </div>
+            
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
-          <button type="button" class="btn btn-primary">Aceptar</button>
+          <button type="button" class="btn btn-primary" [disabled]="usuariosForm.invalid" (click)="crearUsuarios()">Aceptar</button>
         </div>
       </div>
     </div>

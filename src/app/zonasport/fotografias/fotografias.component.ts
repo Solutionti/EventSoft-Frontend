@@ -21,7 +21,7 @@ export class FotografiasComponent implements OnInit{
 
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.cargaPagina();
   }
 
