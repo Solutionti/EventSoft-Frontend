@@ -5,7 +5,8 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { PaginaService } from '../services/pagina.service';
-
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-detallecompra',
   standalone: true,
@@ -15,15 +16,19 @@ import { PaginaService } from '../services/pagina.service';
     MenuComponent,
     FooterComponent,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   templateUrl: './detallecompra.component.html',
-  styleUrl: './detallecompra.component.css'
+  styleUrl: './detallecompra.component.css',
+  providers: [ConfirmationService,MessageService]
 })
 export class DetallecompraComponent implements OnInit {
   constructor(
     private paginaServices: PaginaService,
     private router: Router,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService,
   ) {
 
   }
@@ -146,5 +151,39 @@ export class DetallecompraComponent implements OnInit {
 
           }
         });
+  }
+
+  canjearCodigoPromocional() {
+    let codigo = this.detalleFacturacionForm.get("documento_facturacion")?.value,
+        documento =  this.promocionalForm.get("codigo_promocional")?.value;
+
+    this.paginaServices
+        .canjearCodigoPromocional(documento,codigo)
+        .subscribe((response: any ) => {
+          if(response.status == 200) {
+            this.showSuccess(response.message);
+            this.promocionalForm.get("codigo_promocional")?.disable();
+            this.total = (this.total - response.data[0].precio);
+          }
+          else {
+            this.showError(response.message);
+          }
+        });
+  }
+
+  showSuccess(message: string) {
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Gran fondo  Aviso',
+      detail: message
+    });
+  }
+
+  showError(message: string) {
+    this.messageService.add({
+      severity: 'error',
+      summary: 'Gran fondo  Aviso',
+      detail: message
+    });
   }
 }

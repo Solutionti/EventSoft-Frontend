@@ -1,3 +1,4 @@
+<p-toast position="top-right"/>
  <header id="header" class="navbar navbar-expand navbar-light navbar-absolute-top">
     <div class="container-fluid">
       <nav class="navbar-nav-wrap">
@@ -44,7 +45,7 @@
             </div>
             <form class="js-validate needs-validation" [formGroup]="iniciarSesionForm">
               <div class="mb-4">
-                <label class="form-label" for="signupModalFormLoginEmail">Ingrese su Email</label>
+                <label class="form-label" for="signupModalFormLoginEmail">Correo electronico</label>
                 <input
                   type="email"
                   class="form-control form-control-lg"
@@ -71,6 +72,7 @@
                 <button
                   type="submit"
                   class="btn btn-primary btn-lg"
+                  (click)="iniciarSesion()"
                   [disabled]="iniciarSesionForm.invalid"
                 >
                   Iniciar Sesion

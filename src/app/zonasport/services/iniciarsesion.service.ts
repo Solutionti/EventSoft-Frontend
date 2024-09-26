@@ -10,7 +10,12 @@ export class IniciarsesionService {
     private http: HttpClient
   ) { }
 
-  iniciarSesion() {
+  iniciarSesion(email: any, password: any) {
+    const url = "http://localhost:8000/api/iniciarsesion";
     
+    return this.http.post(url, {
+      email: email,
+      password: password
+    });
   }
 }

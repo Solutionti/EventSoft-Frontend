@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { FooterComponent } from "../../componentes/footer/footer.component";
 
 @Component({
@@ -15,7 +15,9 @@ import { FooterComponent } from "../../componentes/footer/footer.component";
 })
 export class ZonadeportistaComponent implements OnInit {
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
 
   }
 
@@ -53,5 +55,11 @@ export class ZonadeportistaComponent implements OnInit {
   verDatosPersonales() {
     this.datospersonales = false;
     this.pedidos = true;
+  }
+
+
+  cerrarSesion() {
+    localStorage.clear();
+    window.location.href = 'http://localhost:4200/';
   }
 }

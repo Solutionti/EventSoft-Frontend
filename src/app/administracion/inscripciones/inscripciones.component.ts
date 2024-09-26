@@ -73,6 +73,7 @@ export class InscripcionesComponent implements OnInit {
       telefono: "",
       direccion: "",
       correo: "",
+      estado: "",
       rh: "",
       seguromedico: "",
       fechanacimiento: "",

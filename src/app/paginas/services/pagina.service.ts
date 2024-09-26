@@ -53,4 +53,13 @@ export class PaginaService {
       codigo_promocional: datos[0].codigo_promocional,
     });
   }
+
+  canjearCodigoPromocional(codigo: any, documento: any) {
+
+    const url = "http://localhost:8000/api/canjearCodigoPromocional";
+    let params = new HttpParams().set("codigo", codigo).set("documento", documento);
+
+    return this.http.get(url, { params });
+    
+  }
 }

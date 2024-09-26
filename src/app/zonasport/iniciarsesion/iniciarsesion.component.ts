@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { IniciarsesionService } from '../services/iniciarsesion.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-iniciarsesion',
@@ -10,15 +12,19 @@ import { IniciarsesionService } from '../services/iniciarsesion.service';
   imports: [
     RouterOutlet,
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastModule
   ],
   templateUrl: './iniciarsesion.component.html',
-  styleUrl: './iniciarsesion.component.css'
+  styleUrl: './iniciarsesion.component.css',
+  providers: [MessageService],
 })
 export class IniciarsesionComponent implements OnInit {
 
   constructor(
-    private iniciarsesionServices: IniciarsesionService
+    private iniciarsesionServices: IniciarsesionService,
+    private router: Router,
+    private messageService: MessageService
   ) {
 
   }
@@ -56,6 +62,58 @@ export class IniciarsesionComponent implements OnInit {
     let correo = this.iniciarSesionForm.get("correo_iniciar")?.value,
         contrasena = this.iniciarSesionForm.get("contrasena_iniciar")?.value;
 
+    this.iniciarsesionServices
+        .iniciarSesion(correo, contrasena)
+        .subscribe((response: any ) => {
+          if(response.status == 200) {
+            sessionStorage.setItem('token', response.token);
+            localStorage.setItem('token', JSON.stringify(response.token));
+            localStorage.setItem('documento', response.users.documento.toUpperCase());
+            localStorage.setItem('nombre', response.users.nombre.toUpperCase());
+            localStorage.setItem('apellido', response.users.apellido.toUpperCase());
+            localStorage.setItem('email', response.users.email.toUpperCase());
+            localStorage.setItem('rol', response.users.rol_usuario.toUpperCase());
+            localStorage.setItem('estado', response.users.estado.toUpperCase());
+
+            this.showSuccess()
+            if(response.users.rol_usuario == "Deportista") {
+              setTimeout(() => {
+                this.router.navigate(['/', 'zonasport']);
+                this.spinner = true;
+              }, 3000)
+            }
+            else if(response.users.rol_usuario == "Administrador") {
+              setTimeout(() => {
+                this.router.navigate(['administracion/configuracion']);
+                this.spinner = true;
+              }, 3000)
+            }
+          }
+          else {
+            let message = "El usuario y/o contraseña ingresado son invalidos."
+            this.showError(message);
+          }
+        });
+  }
+
+  showError(message: string) {
     
+    this.messageService.add(
+      {
+        severity: 'error',
+        summary: 'EventSoft Aviso',
+        detail: message
+      }
+    );
+  }
+
+  showSuccess() {
+    let nombre = localStorage.getItem('nombre');
+    let apellido = localStorage.getItem('apellido');
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Bienvenido a EventSoft  !!', 
+      detail: nombre?.toLocaleUpperCase() + '  ' +  apellido?.toLocaleUpperCase() + ' ' 
+    });
   }
 }

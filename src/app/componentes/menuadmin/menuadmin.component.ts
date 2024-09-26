@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-menuadmin',
@@ -8,6 +8,20 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   templateUrl: './menuadmin.component.html',
   styleUrl: './menuadmin.component.css'
 })
-export class MenuadminComponent {
+export class MenuadminComponent implements OnInit  {
 
+  constructor(
+    private router: Router
+  ) {
+
+  }
+  
+  ngOnInit(): void {
+  }
+
+  cerrarSesion() {
+    localStorage.clear();
+    window.location.href = 'http://localhost:4200/';
+  }
+  
 }

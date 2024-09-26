@@ -5,11 +5,20 @@ import { MenuadminComponent } from "../../componentes/menuadmin/menuadmin.compon
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { TableModule } from 'primeng/table';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @Component({
   selector: 'app-configuracionevento',
   standalone: true,
-  imports: [CommonModule, MenuadminComponent, ReactiveFormsModule, ToastModule],
+  imports: [
+    CommonModule, 
+    MenuadminComponent, 
+    ReactiveFormsModule, 
+    ToastModule,
+    TableModule,
+    NgxCurrencyDirective
+  ],
   templateUrl: './configuracionevento.component.html',
   styleUrl: './configuracionevento.component.css',
   providers: [ConfirmationService,MessageService]
@@ -46,7 +55,7 @@ export class ConfiguracioneventoComponent implements OnInit {
 
   regaloForm = new FormGroup({
     documento_deportista: new FormControl('', Validators.required),
-    codigo_deportista: new FormControl('', Validators.required),
+    codigo_deportista: new FormControl({value: '', disabled: true}, Validators.required),
     total_deportista: new FormControl('', Validators.required),
     estado_deportista: new FormControl('Activo', Validators.required)
   });
@@ -103,6 +112,22 @@ export class ConfiguracioneventoComponent implements OnInit {
           console.log(response);
           this.patrocinios = response;
     })
+  }
+
+ 
+  generarCodigoRamdon() {
+    let length: number = 7;
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let result = '';
+
+    for (let i = 0; i < length; i++) {
+      const randomIndex = Math.floor(Math.random() * characters.length);
+      result += characters.charAt(randomIndex);
+    }
+
+    this.regaloForm.patchValue({
+      codigo_deportista: result
+    });
   }
 
   crearRegalo() {

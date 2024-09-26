@@ -1,5 +1,5 @@
 <app-menu></app-menu>
-<!-- Content -->
+<p-toast position="top-right"/>
 <div class="container content-space-1 content-space-lg-2">
     <div class="row">
       <div class="col-lg-8 mb-7 mb-lg-0">
@@ -242,12 +242,21 @@
               </div>
               <form [formGroup]="promocionalForm">
                 <div class="border-bottom pb-4 mb-3">
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Ingresa codigo promocional"
-                    formControlName="codigo_promocional"
-                  >
+                  <div class="input-group">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Codigo promocional"
+                      formControlName="codigo_promocional"
+                    >
+                    <button
+                      class="btn btn-danger"
+                      type="button"
+                      (click)="canjearCodigoPromocional()"
+                    >
+                      Canjear
+                    </button>
+                  </div>
                 </div>
               </form>
                 <div class="border-bottom pb-4 mb-4">
