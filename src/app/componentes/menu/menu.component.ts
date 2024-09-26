@@ -1,14 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-
+import { ToastModule } from 'primeng/toast';
+import { FooterComponent } from '../footer/footer.component';
 @Component({
   selector: 'app-menu',
   standalone: true,
   imports: [
     RouterOutlet,
     RouterLink,
-    CommonModule
+    FooterComponent,
+    CommonModule,
+    ToastModule
   ],
   templateUrl: './menu.component.html',
   styleUrl: './menu.component.css'

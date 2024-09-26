@@ -25,59 +25,62 @@
                 </div>
               </div>
             </div>
-            <!--  --> 
-            <table class="table table-nowrap table-align-middle"  *ngIf="carritoCompra.length > 0">
-              <thead class="thead-light">
-                <tr>
-                  <th></th>
-                  <th>Precio</th>
-                  <th>Cantidad</th>
-                  <th>Subtotal</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let carrito of carritoCompra">
-                  <td>
-                    <a class="d-flex">
-                      <div class="flex-shrink-0">
-                        <div class="avatar avatar-circle avatar-lg ">
-                          <img class="avatar-img" src="{{ carrito.imagen }}" alt="Image Description">
+            <!--  -->
+            <div class="table-responsive">
+
+              <table class="table table-nowrap table-align-middle"  *ngIf="carritoCompra.length > 0">
+                <thead class="thead-light">
+                  <tr>
+                    <th></th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let carrito of carritoCompra">
+                    <td>
+                      <a class="d-flex">
+                        <div class="flex-shrink-0">
+                          <div class="avatar avatar-circle avatar-lg ">
+                            <img class="avatar-img" src="{{ carrito.imagen }}" alt="Image Description">
+                          </div>
                         </div>
-                      </div>
-                      <div class="flex-grow-1 ms-3">
-                        <span class="d-block h5 text-inherit mb-0">{{ carrito.nombre }}<i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-placement="top" title="Top endorsed"></i></span>
-                        <span class="d-block font-size-sm text-body">Hombre: Categoría {{ carrito.categoria }}</span>
-                        <span class="d-block font-size-sm text-body">Talla Jersey: {{ carrito.jersy }}</span>
-                      </div>
-                    </a>
-                  </td>
-                  <td>$ {{ carrito.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
-                  <td>
-                    <input
-                      type="number"
-                      class="form-control form-control-sm"
-                      style="width: 70px !important;"
-                      disabled
-                      value="{{ carrito.cantidad }}"
-                    >
-                  </td>
-                  <td>$ {{ (carrito.precio * carrito.cantidad).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
-                  <td>
-                    <a
-                      class="text-body"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      data-bs-html="true"
-                      title="Borrar"
-                      (click)="calcularTotalCarrito()"
-                    >
-                      <i class="fas fa-trash text-danger"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="d-block h5 text-inherit mb-0">{{ carrito.nombre }}<i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-placement="top" title="Top endorsed"></i></span>
+                          <span class="d-block font-size-sm text-body">Hombre: Categoría {{ carrito.categoria }}</span>
+                          <span class="d-block font-size-sm text-body">Talla Jersey: {{ carrito.jersy }}</span>
+                        </div>
+                      </a>
+                    </td>
+                    <td>$ {{ carrito.precio.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                    <td>
+                      <input
+                        type="number"
+                        class="form-control form-control-sm"
+                        style="width: 70px !important;"
+                        disabled
+                        value="{{ carrito.cantidad }}"
+                      >
+                    </td>
+                    <td>$ {{ (carrito.precio * carrito.cantidad).toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0}) }}</td>
+                    <td>
+                      <a
+                        class="text-body"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-html="true"
+                        title="Borrar"
+                        (click)="calcularTotalCarrito()"
+                      >
+                        <i class="fas fa-trash text-danger"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
             <div class="row mt-4" *ngIf="carritoCompra.length > 0">
               <div class="col-md-2">
                 <button
