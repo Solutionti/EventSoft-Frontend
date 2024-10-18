@@ -33,7 +33,7 @@ export class InicioComponent implements OnInit {
   ngOnInit() {
     this.cargaPagina();
     this.getServiciosInicio();
-    
+    this.crearVisitaPagina();
   }
 
   ngAfterViewInit(): void {
@@ -85,4 +85,19 @@ export class InicioComponent implements OnInit {
         });
   }
   
+  crearVisitaPagina() {
+    this.paginaServices
+        .crearVisitaPagina()
+        .subscribe((response: any ) => {
+
+        })
+  }
+
+  CrearVisitaInscripcion(servicio: any ) {
+    this.paginaServices
+        .CrearVisitaInscripcion(servicio)
+        .subscribe((response: any) => {
+
+        })
+  }
 }

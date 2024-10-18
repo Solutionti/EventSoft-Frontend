@@ -1,6 +1,6 @@
 (function () {
  
-    const oneYearFromNow = new Date('2024-09-12 22:00:00')
+    const oneYearFromNow = new Date('2024-11-10 06:00:00')
 
     document.querySelectorAll('.js-countdown').forEach(item => {
       const days = item.querySelector('.js-cd-days'),

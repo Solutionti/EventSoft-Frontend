@@ -62,4 +62,20 @@ export class PaginaService {
     return this.http.get(url, { params });
     
   }
+
+  CrearVisitaInscripcion(servicio: any ) {
+    const url = "http://localhost:8000/api/CrearVisitaInscripcion";
+
+    return this.http.post(url, { 
+      servicio: servicio
+    });
+  }
+
+  crearVisitaPagina() {
+    const url = "http://localhost:8000/api/crearVisitaPagina";
+
+    return this.http.post(url, { 
+      
+    });
+  }
 }

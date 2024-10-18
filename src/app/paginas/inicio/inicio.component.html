@@ -100,6 +100,7 @@
               <a 
                 class="card-link btn btn-danger btn-sm"
                 [routerLink]="['/inscripcion', servicio.codigo_servicio ]"
+                (click)="CrearVisitaInscripcion(servicio.codigo_servicio)"
               >
                 Comprar <i class="bi-chevron-right small ms-1"></i>
               </a>
@@ -125,7 +126,7 @@
       <blockquote class="blockquote text-white">“ hemos pensado en ti paga a coutas. ahora puedes pagar tu Incripcción a Cuotas sin interes. ”</blockquote>
       <button class="btn btn-danger btn-sm mt-2">Mas información</button>
       <figcaption class="blockquote-footer text-center text-white">
-        Gran fondo Ciudad musical
+        Gran Sprint Ciudad musical
         <span class="blockquote-footer-source text-white">Ciclismo de ruta | Organizador</span>
       </figcaption>
     </figure>
